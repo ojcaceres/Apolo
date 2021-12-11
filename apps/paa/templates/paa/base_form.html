@@ -1,0 +1,106 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'paa_Base_list' %}">
+    Base Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="numero_contrato">numero_contrato: </label>
+  <input class="form-control col-sm-10" id="numero_contrato" type="text" name="numero_contrato" value="{{ object.numero_contrato }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="tipologia">tipologia: </label>
+  <input class="form-control col-sm-10" id="tipologia" type="text" name="tipologia" value="{{ object.tipologia }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="modalidad">modalidad: </label>
+  <input class="form-control col-sm-10" id="modalidad" type="text" name="modalidad" value="{{ object.modalidad }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="fechasuscripcion">fechasuscripcion: </label>
+  <input class="form-control col-sm-10" id="fechasuscripcion" type="datetime-local" name="fechasuscripcion" value="{{ object.fechasuscripcion }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="fechafinal">fechafinal: </label>
+  <input class="form-control col-sm-10" id="fechafinal" type="datetime-local" name="fechafinal" value="{{ object.fechafinal }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="plazo">plazo: </label>
+  <input class="form-control col-sm-10" id="plazo" type="text" name="plazo" value="{{ object.plazo }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="idcupo">idcupo: </label>
+  <input class="form-control col-sm-10" id="idcupo" type="text" name="idcupo" value="{{ object.idcupo }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="numerocdp">numerocdp: </label>
+  <input class="form-control col-sm-10" id="numerocdp" type="text" name="numerocdp" value="{{ object.numerocdp }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="numerocrp">numerocrp: </label>
+  <input class="form-control col-sm-10" id="numerocrp" type="text" name="numerocrp" value="{{ object.numerocrp }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="idcupoaju">idcupoaju: </label>
+  <input class="form-control col-sm-10" id="idcupoaju" type="text" name="idcupoaju" value="{{ object.idcupoaju }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="fecharegistro">fecharegistro: </label>
+  <input class="form-control col-sm-10" id="fecharegistro" type="datetime-local" name="fecharegistro" value="{{ object.fecharegistro }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="fuente">fuente: </label>
+  <input class="form-control col-sm-10" id="fuente" type="text" name="fuente" value="{{ object.fuente }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="proyecto">proyecto: </label>
+  <input class="form-control col-sm-10" id="proyecto" type="text" name="proyecto" value="{{ object.proyecto }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="tipoidcontratista">tipoidcontratista: </label>
+  <input class="form-control col-sm-10" id="tipoidcontratista" type="text" name="tipoidcontratista" value="{{ object.tipoidcontratista }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="numeroid">numeroid: </label>
+  <input class="form-control col-sm-10" id="numeroid" type="text" name="numeroid" value="{{ object.numeroid }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="nombrecontratista">nombrecontratista: </label>
+  <input class="form-control col-sm-10" id="nombrecontratista" type="text" name="nombrecontratista" value="{{ object.nombrecontratista }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="idsupervisor">idsupervisor: </label>
+  <input class="form-control col-sm-10" id="idsupervisor" type="text" name="idsupervisor" value="{{ object.idsupervisor }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="nombresupervisor">nombresupervisor: </label>
+  <input class="form-control col-sm-10" id="nombresupervisor" type="text" name="nombresupervisor" value="{{ object.nombresupervisor }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="valorcrp">valorcrp: </label>
+  <input class="form-control col-sm-10" id="valorcrp" type="text" name="valorcrp" value="{{ object.valorcrp }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="anulaciones">anulaciones: </label>
+  <input class="form-control col-sm-10" id="anulaciones" type="text" name="anulaciones" value="{{ object.anulaciones }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="valorneto">valorneto: </label>
+  <input class="form-control col-sm-10" id="valorneto" type="text" name="valorneto" value="{{ object.valorneto }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="valorcontrato">valorcontrato: </label>
+  <input class="form-control col-sm-10" id="valorcontrato" type="text" name="valorcontrato" value="{{ object.valorcontrato }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

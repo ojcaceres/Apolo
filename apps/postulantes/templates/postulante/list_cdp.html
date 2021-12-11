@@ -1,0 +1,133 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+{% load pagination_tags %}
+
+
+{% block title %} Listar CDPs Afectados {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+     <div class="pcoded-content">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Lista de CDPs afectados</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Modulo de Creacion</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Listar CDPs afectados</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="m-b-10">Items en consulta:</h5> <h5>{{ cdps|length }}</h5>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="window.location.href='{% url 'nuevo_cdp'  %}'">
+                                        Nueva afectacion a CDP
+                                    </button>
+            </div>
+        </div>
+                           <!-- /.card-header -->
+         <div class="card-body"></div>
+        <style>
+                .name {
+                    font-weight: bold;
+                }
+
+                .subtext {
+                    font-size: smaller;
+                }
+            </style>
+
+
+
+
+
+                    {% if mensaje_respuesta %}
+                    <div class="alert alert-success alert-block shadow">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ mensaje_respuesta }}</strong>
+                    </div>
+                    {% endif %}
+                    <table id="books-table" class="table-striped tall-row" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    id Cupo PAA
+                                </th>
+                                <th>
+                                    Número de CDP
+                                </th>
+                                <th>
+                                    Valor CDP
+                                </th>
+                                <th>
+                                    Descripcion Cupo
+                                </th>
+                                <th>
+                                    Valor Contrato
+                                </th>
+                                <th>
+                                    Postulante
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cdp in cdps %}
+                            <tr>
+                                <td>
+                                    {{ cdp.id_cupo_paa }}
+                                </td>
+                                <td>
+                                    {{ cdp.numero_cdp }} - {{ cdp.vigencia_cdp }}
+                                </td>
+                                <td>
+                                    {{ cdp.valor_cdp }}
+                                </td>
+                                <td>
+                                    {{ cdp.descripcion_cupo }}
+                                </td>
+                                <td>
+                                    {{ cdp.valor_contrato }}
+                                </td>
+                                <td>
+                                    {{ cdp.display_postulante }}
+                                </td>
+                                <td>
+                                    <a href="{% url 'cdp_to_postulante' cdp.id %}" class=""> Asignar postulante </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'documentos_proceso' cdp.id %}" class=""> Documentos </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+            <!-- /.card -->
+
+
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+
+{% endblock %}

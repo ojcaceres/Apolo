@@ -1,0 +1,123 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+{% load pagination_tags %}
+
+
+{% block title %} Listar Postulantes {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Lista de Postulantes</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Modulo de Creacion</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Listar Postulantes</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="m-b-10">Items en consulta:</h5> <h5>{{ postulantes|length }}</h5>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="window.location.href='{% url 'nuevo_postulante'  %}'">
+                                        Crear Postulante
+                                    </button>
+            </div>
+        </div>
+
+
+                    <!-- /.card-header -->
+                        <div class="card-body"></div>
+        <style>
+                .name {
+                    font-weight: bold;
+                }
+
+                .subtext {
+                    font-size: smaller;
+                }
+            </style>
+                        {% if mensaje_respuesta %}
+                        <div class="alert alert-success alert-block shadow">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ mensaje_respuesta }}</strong>
+                        </div>
+                        {% endif %}
+
+                        <table  id="books-table" class="table-striped tall-row">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Cedula
+                                </th>
+                                <th>
+                                    Postulante
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                                <th>
+                                    Ver
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for postulante in postulantes %}
+                                <tr>
+                                    <td>
+                                        {{ postulante.numero_documento }}
+                                    </td>
+                                    <td>
+                                        <span class="name">{{ postulante.primer_nombre }} {{ postulante.segundo_nombre }} {{ postulante.primer_apellido }} {{ postulante.segundo_apellido }}</span>  <br/>
+                                        <span class="subtext">{{ postulante.correoelectronicopersonal }}</span></td>
+
+                                    </td>
+                                    <td>
+                                        {% for estados in estados_pustulantes %}                                                                                     
+                                                {% if estados.valor == postulante.id_estado %}
+                                                    {{estados.texto}}
+                                                {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="window.location.href='{% url 'documentos_postulante' postulante.correoelectronicopersonal %}'">
+                                        <span class="fa fa-file-archive" ></span>
+                                    </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+       {% paginate using "includes/pagination.html" %}
+
+                    </div>
+                </div>
+                    <!-- /.card -->
+    
+    
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+{% block extrascripts %}{% endblock extrascripts %}

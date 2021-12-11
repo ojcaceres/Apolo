@@ -1,0 +1,139 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+{% load pagination_tags %}
+
+
+{% block title %} Listar Postulantes {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Crear Postulantes</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Modulo de Creacion</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Postulantes</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+                    <!-- /.card-header -->
+                        <div class="card-body"></div>
+        <style>
+                .name {
+                    font-weight: bold;
+                }
+
+                .subtext {
+                    font-size: smaller;
+                }
+            </style>
+                        {% if mensaje_respuesta %}
+                        <div class="alert alert-success alert-block shadow">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ mensaje_respuesta }}</strong>
+                        </div>
+                        {% endif %}
+                            <form role="form" method="POST"  action="{% url 'nuevo_postulante_resultado' %}">
+                            {% csrf_token %}                           
+                                <div class="form-row">
+                                    <div class='col-6' >    
+                                        <div class="form-group">
+                                            <label>Tipo de documento *</label>
+                                            <select  name="tipo_documento" class="form-control" id="tipo_documento"
+                                                required>
+                                                <option value="" disabled>Seleccione un documento</option>
+                                                {% for documentos in tipo_documento %}
+                                                <option value="{{documentos.valor}}" >{{documentos.texto}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <script>
+                                var tipo_documento = document.getElementById("tipo_documento");
+tipo_documento.value = "CC"
+                            </script>
+
+
+                                <div class="form-row">
+                                    <div class='col-6' >    
+                                        <div class="form-group">
+                                            <label>Número de identificación *</label>
+                                            <input type="text" name="numero_documento" id="numero_documento"  class="form-control" placeholder="" value=""  required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary" name="guardar" value="guardar" >Buscar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </form>
+                            <form role="form" method="POST"  action="{% url 'nuevo_postulante_guardar' %}">
+                            
+                            {% csrf_token %}
+                            {% for persona in respuesta.Persona %}
+
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>id SIDEAP</label><input type=' text'  name='idPersonaSIDEAP'  id='idPersonaSIDEAP'  class=' form-control'  value='{{ persona.idPersonaSIDEAP }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tipo de documento</label><input type=' text'  name='idTipoDocumento'  id='idTipoDocumento'  class=' form-control'  value='{{ persona.idTipoDocumento }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Número de documento</label><input type=' text'  name='numDocumento'  id='numDocumento'  class=' form-control'  value='{{ persona.numDocumento }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Primer  nombre</label><input type=' text'  name='primerNom'  id='primerNom'  class=' form-control'  value='{{ persona.primerNom }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Otro nombre</label><input type=' text'  name='otroNom'  id='otroNom'  class=' form-control'  value='{{ persona.otroNom }}'  ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Primer apellido</label><input type=' text'  name='primerApellido'  id='primerApellido'  class=' form-control'  value='{{ persona.primerApellido }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Segundo apellido</label><input type=' text'  name='segundoApellido'  id='segundoApellido'  class=' form-control'  value='{{ persona.segundoApellido }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Sexo</label><input type=' text'  name='codSexoPersona'  id='codSexoPersona'  class=' form-control'  value='{{ persona.codSexoPersona }} '  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código País</label><input type=' text'  name='idPaisNacimiento'  id='idPaisNacimiento'  class=' form-control'  value='{{ persona.idPaisNacimiento }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Municipio de nacimiento</label><input type=' text'  name='idMunicipioNacimiento'  id='idMunicipioNacimiento'  class=' form-control'  value='{{ persona.idMunicipioNacimiento }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Fecha de nacimiento</label><input type=' text'  name='fechaNacimiento'  id='fechaNacimiento'  class=' form-control'  value='{{ persona.fechaNacimiento }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tiene libreta militar</label><input type=' text'  name='tieneLibretaMilitar'  id='tieneLibretaMilitar'  class=' form-control'  value='{{ persona.tieneLibretaMilitar }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Dirección de residencia</label><input type=' text'  name='direccionResidencia'  id='direccionResidencia'  class=' form-control'  value='{{ persona.direccionResidencia }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Teléfono docimilio</label><input type=' text'  name='numTelefonoDomicilio'  id='numTelefonoDomicilio'  class=' form-control'  value='{{ persona.numTelefonoDomicilio }}'  required ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Email personal</label><input type=' text'  name='correoElectronicoPersonal'  id='correoElectronicoPersonal'  class=' form-control'  value='{{ persona.correoElectronicoPersonal }}'  required ></div></div>
+
+
+                                    </div>
+                                    <!-- /.form-row -->
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" name="guardar" vuale="guardar" >Guardar</button>
+                                </div>
+                           
+                            {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                      <!-- /.card -->
+        
+        
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+{% block extrascripts %}{% endblock extrascripts %}

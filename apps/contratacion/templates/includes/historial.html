@@ -1,0 +1,38 @@
+<div class="form-group">
+                                <table id="history" class="table-striped tall-row" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Usuario
+                                        </th>
+                                        <th>
+                                            Estado
+                                        </th>
+                                        <th>
+                                            Novedad
+                                        </th>
+                                        <th>
+                                            Fecha
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for registro in registros %}
+                                        <tr>
+                                            <td>
+                                                {{ registro.usuario.first_name }}
+                                            </td>
+                                            <td>
+                                                {{ registro.estado }}
+                                            </td>
+                                            <td>
+                                                {{ registro.novedad }}
+                                            </td>
+                                            <td>
+                                                {{ registro.date }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+</div>

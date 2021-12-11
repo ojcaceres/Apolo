@@ -1,0 +1,309 @@
+{% load static %}
+
+<head>
+    <title>
+        Apolo - Creacion de Modificaciones
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="/static/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/assets/plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!-- Custom CSS -->
+    <style media="screen">
+        .invalid {
+            color: #dc3545;
+            font-size: 80%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .footer {
+            margin: auto 0 0;
+            height: 56px;
+        }
+    </style>
+
+
+</head>
+
+{% include 'includes/navigation.html' %}
+
+<body>
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Modulo de Modificaciones</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Modificaciones</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Creacion</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row align-items-center">
+
+                            <div class="col-md-3">
+                                <label for="contrato">Numero de contrato:</label><br>
+                                <input type="text" value="{{numerocontrato}}" id="contrato" name="contrato"
+                                    class="form-control col-sm-10" autocomplete="false"> <br>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="select2">Vigencia:</label><br>
+                                <select class="mb-3 form-control" name="select2" id="select2">
+                                    <option value="2020">2020</option>
+                                    <option value="2021" selected>2021</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary" name="filtrar" value="Buscar">
+                            </div>
+                        </div>
+
+                        {% if resultado is True %}
+                        <div class="row">
+                            <!-- [ stiped-table ] start -->
+                            <table id="books-table" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col">#</th>
+                                        <th class="text-center" scope="col">Contrato</th>
+                                        <th class="text-center" scope="col">Contratista</th>
+                                        <th class="text-center" scope="col">Estado</th>
+                                        <th class="text-center" scope="col">seleccionado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for proceso in procesoraiz %}
+                                    <tr>
+                                        <th class="text-center" scope="row">{{ proceso.numero_de_proceso }}</th>
+                                        <td>{{ proceso.numero_contrato }} de {{ proceso.vigencia }} <br>
+                                            {{ proceso.modificacion}}</td>
+                                        <td>
+                                            <h6> {{ proceso.nombre_contratista }} </h6>
+                                        </td>
+                                        <td>
+                                            <h6> {{ proceso.estado_id }} </h6>
+                                        </td>
+                                        <td>
+                                            <h6><input type="checkbox" id="cbox" value="proceso_checkbox"
+                                                    checked="True"></h6>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                 
+                        <div class="row">
+
+                        <div class="col">
+            
+                               <p> <p>  <label for="select3">Seleccione el tipo de Modificacion a Crear :</label><br>
+                                <select class="form-control col-sm-10" name="select3" id="select3">
+                                    <option value="OTROSI">OTROSI</option>
+                                    <option value="ADICION" selected>ADICION</option>
+                                    <option value="CESION">CESION</option>
+                                    <option value="PRORROGA">PRORROGA</option>
+                                    <option value="SUSPENSION">SUSPENSION</option>
+                                    <option value="REINICIO">REINICIO</option>
+                                    <option value="ADICION_PRORROGA">ADICION Y PRORROGA</option>
+                                    <option value="ADICION_PRORROGA_OTROSI">ADICION , PRORROGA, OTROSI</option>
+                                    <option value="ADICION_PRORROGA_SUSPENSION">ADICION , PRORROGA, SUSPENSION</option>
+                                    <option value="TERMINACION_ANTICIPADA">TERMINACION ANTICIPADA</option>
+                                </select><br>
+                      
+
+                        <label for="cdp" id="lblcdp">CDP:</label>
+                        <input type="text" id="cdp" name="cdp"  id="cdp" value="{{ variables.cdp}}" class="form-control col-sm-10" autocomplete="false">
+                        
+                        <label for="valor" id="lblvalor">Valor:</label>
+                        <input type="text" id="valor" name="valor"  id="valor " value="{{ variables.valor}}" class="form-control col-sm-10" autocomplete="false">
+
+                        <label for="duracion"id="lblduracion">Duracion:</label>
+                        <input type="text" id="duracion" name="duracion"  id="duracion" value="{{ variables.duracion}}" class="form-control col-sm-10" autocomplete="false">
+
+                        <label for="fecha_firma_modificacion"id="lblffm">Fecha Firma de Modificacion:</label>
+                        <input type="date" id="fecha_firma_modificacion" name="fecha_firma_modificacion"  id="fecha_firma_modificacion" value="2000-1-1" class="form-control col-sm-10" autocomplete="false"> 
+                         
+                        <label for="fechaInicio "id="lblfi">Fecha de Inicio:</label>
+                        <input type="date" id="fechaInicio " name="fechaInicio"  id="fechaInicio" value="2000-1-1" class="form-control col-sm-10" autocomplete="false"> 
+                        
+                        <label for="fechaFin" id="lblff">Fecha Fin:</label>
+                        <input type="date" id="fechaFin" name="fechaFin"  id="fechaFin" value="2000-1-1" class="form-control col-sm-10" autocomplete="false"> 
+                        
+                        <label for="fechaReinicio" id="lblfr" style="display:none"> Fecha de Reinicio:</label>
+                        <input type="date" id="fechaReinicio" name="fechaReinicio"  id="fechaReinicio" value="2000-1-1" class="form-control col-sm-10" autocomplete="false" style="display:none"/> 
+
+                        <label for="cedente" id="lblcedente" style="display:none">Nombre del Cedente:</label>
+                        <input type="text" id="cedente" name="cedente"  id="cedente" value="{{ variables.cedente }}" class="form-control col-sm-10" autocomplete="false"style="display:none"/>
+
+                        <label for="documentoCedente" id="lbldoccedente" style="display:none">Documento del Cedente:</label>
+                        <input type="number" id="documentoCedente" name="documentoCedente"  id="documentoCedente" value="{{ variables.documentoCedente}}" class="form-control col-sm-10" autocomplete="false" style="display:none">
+
+                         <label for="cesionario" id="lblcesionario" style="display:none">Nombre del Cesionario:</label>
+                        <input type="text" id="cesionario" name="cesionario"  id="cesionario" value="{{ variables.cesionario }}" class="form-control col-sm-10" autocomplete="false" style="display:none">
+                        
+                        <label for="documentoCesionario" id="lbldoccesionario" style="display:none">Documento del Cesionario:</label>
+                        <input type="number" id="documentoCesionario" name="documentoCesionario"  id="documentoCesionario" value="{{ variables.documentoCesionario }}" class="form-control col-sm-10" autocomplete="false" style="display:none">
+                  
+                            
+                        <script type="text/javascript">
+                            var date = new Date();
+                            var currentDate = date.toISOString().substring(0,10);
+
+                            document.getElementById('fecha_firma_modificacion').value = currentDate;
+                            document.getElementById('fechaInicio ').value = currentDate;
+                            document.getElementById('fechaFin').value = currentDate;
+                            document.getElementById('fechaReinicio').value = currentDate;
+
+                                var ddl = document.getElementById("select3");
+                                ddl.onchange = mostrarOpcionesdeModificacion;
+
+                                function mostrarOpcionesdeModificacion() {
+                                    var ddl = document.getElementById("select3");
+                                    var selectedValue = ddl.options[ddl.selectedIndex].value;
+                                    document.getElementById("lblcdp").style.display = "none";
+                                    document.getElementById("cdp").style.display = "none";
+                                    document.getElementById("lblvalor").style.display = "none";
+                                    document.getElementById("valor").style.display = "none";
+                                    document.getElementById("lblduracion").style.display = "none";
+                                    document.getElementById("duracion").style.display = "none";
+                                    document.getElementById("lblffm").style.display = "none";
+                                    document.getElementById("fecha_firma_modificacion").style.display = "none";
+                                    document.getElementById("lblfi").style.display = "none";
+                                    document.getElementById("fechaInicio ").style.display = "none";
+                                    document.getElementById("lblff").style.display = "none";
+                                    document.getElementById("fechaFin").style.display = "none";
+                                    document.getElementById("lblfr").style.display = "none";
+                                    document.getElementById("fechaReinicio").style.display = "none";
+                                    document.getElementById("lblcedente").style.display = "none";
+                                    document.getElementById("cedente").style.display = "none";
+                                    document.getElementById("lbldoccedente").style.display = "none";
+                                    document.getElementById("documentoCedente").style.display = "none";
+                                    document.getElementById("lblcesionario").style.display = "none";
+                                    document.getElementById("cesionario").style.display = "none";
+                                    document.getElementById("lbldoccesionario").style.display = "none";
+                                    document.getElementById("documentoCesionario").style.display = "none";
+
+                                    switch (selectedValue) {
+                                    case "OTROSI":
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        break;
+                                    case "ADICION":
+                                    case "PRORROGA":
+                                    case "ADICION_PRORROGA":
+                                    case "ADICION_PRORROGA_OTROSI":
+                                    case "ADICION_PRORROGA_SUSPENSION":
+                                        document.getElementById("lblcdp").style.display = "";
+                                        document.getElementById("cdp").style.display = "";
+                                        document.getElementById("lblvalor").style.display = "";
+                                        document.getElementById("valor").style.display = "";
+                                        document.getElementById("lblduracion").style.display = "";
+                                        document.getElementById("duracion").style.display = "";
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        document.getElementById("lblfi").style.display = "";
+                                        document.getElementById("fechaInicio ").style.display = "";
+                                        document.getElementById("lblff").style.display = "";
+                                        document.getElementById("fechaFin").style.display = "";
+                                        break;
+                                    case "CESION":
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        document.getElementById("lblfi").style.display = "";
+                                        document.getElementById("fechaInicio ").style.display = "";
+                                        document.getElementById("lblcedente").style.display = "";
+                                        document.getElementById("cedente").style.display = "";
+                                        document.getElementById("lbldoccedente").style.display = "";
+                                        document.getElementById("documentoCedente").style.display = "";
+                                        document.getElementById("lblcesionario").style.display = "";
+                                        document.getElementById("cesionario").style.display = "";
+                                        document.getElementById("lbldoccesionario").style.display = "";
+                                        document.getElementById("documentoCesionario").style.display = "";
+                                        break;
+                                     case "SUSPENSION":
+                                        document.getElementById("lblduracion").style.display = "";
+                                        document.getElementById("duracion").style.display = "";
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        document.getElementById("lblfi").style.display = "";
+                                        document.getElementById("fechaInicio ").style.display = "";
+                                        document.getElementById("lblff").style.display = "";
+                                        document.getElementById("fechaFin").style.display = "";
+                                        document.getElementById("lblfr").style.display = "";
+                                        document.getElementById("fechaReinicio").style.display = ""
+                                        break;
+                                     case "REINICIO":
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        document.getElementById("lblfr").style.display = "";
+                                        document.getElementById("fechaReinicio").style.display = "";
+                                        break;
+                                     case "TERMINACION_ANTICIPADA":
+                                        document.getElementById("lblffm").style.display = "";
+                                        document.getElementById("fecha_firma_modificacion").style.display = "";
+                                        document.getElementById("lblff").style.display = "";
+                                        document.getElementById("fechaFin").style.display = "";
+                                         break;
+                                    }
+                                }
+                        </script>
+                            </div>
+                        </div>
+
+
+                        <div class="row align-items-center">
+
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary" name="filtrar" value="Crear Modificacion">
+                            </div>
+
+                        </div>
+                        {% endif %}
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+  {% include 'includes/scripts.html' %}
+
+</body>
+
+</html>

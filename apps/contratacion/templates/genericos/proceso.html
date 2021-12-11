@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+    <style>
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+            color: red
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div style="margin-left: 20px">
+        <p>
+            <a class="btn btn-light" href="{{ request.META.HTTP_REFERER }}">
+                ← Listar Procesos
+            </a>
+        </p>
+
+        <div class="row">
+            <div class="col">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if back_state != None %}
+                     <button class="btn btn-secondary shadow-2 mb-4" name="action" value="Back" type="submit">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                       Devolver a {{ back_state }}
+                    </button>
+                    {% endif %}
+
+                <button class="btn mb-4 " name="none" value="none" disabled type="button" </button>
+
+                       <button class="btn btn-primary shadow-2 mb-4" name="action" value="Next" type="submit">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Avanzar a {{ next_state }}
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

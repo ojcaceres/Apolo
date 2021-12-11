@@ -1,0 +1,101 @@
+{% extends "layouts\base3.html" %}
+{% block stylesheets %}
+<style>
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+        color: red
+    }
+
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+</style>
+{% endblock stylesheets %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <!-- general form elements disabled -->
+
+        <div class="card card-primary shadow col-12">
+            <div class="card-header">
+                <h3 class="card-title">GENERACIÓN DE DOCUMENTOS</h3>
+            </div>
+            <!-- /.card-header -->
+             <div class="card-body"></div>
+                {% if mensaje_respuesta %}
+                <div class="alert alert-success alert-block shadow">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ mensaje_respuesta }}</strong>
+                </div>
+                {% endif %}
+                <form role="form" method="POST"  action="{% url 'cdp_to_postulante' cdp.id %}">
+                {% csrf_token %}                                                           
+                <div class="row">
+                    <div class="col-12"><h3>
+                        Informacion del cupo/CDP
+                    </h3></div>
+                </div>    
+                <input type="text" name="id_radicacion_cdp" value = '{{ cdp.id }}'>
+                <div class="form-row">
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Numero CDP</label><input type=' text'  name='NumeroCDP'  id='NumeroCDP'  class=' form-control'  value='{{ cdp.numero_cdp }}' readonly required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia CDP</label><input type=' text'  name='VigenciaCDP'  id='VigenciaCDP'  class=' form-control'  value='{{cdp.vigencia_cdp}}' readonly required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia PAA</label><input type=' text'  name='VigenciaPAA'  id='VigenciaPAA'  class=' form-control'  value='{{cdp.vigencia_plan}}' readonly required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Valor CDP</label><input type=' text'  name='ValorCDP'  id='ValorCDP'  class=' form-control'  value='{{ cdp.valor_cdp }}' readonly required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Valor del contrato</strong></label><input type=' text'  name='valor_contrato'  id='valor_contrato'  class=' form-control'  value='{{ cdp.valor_contrato }}'  required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Honorarios Mensuales</strong></label><input type=' text'  name='honorarios'  id='honorarios'  class=' form-control'  value='{{ cdp.honorarios }}'  required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código proyecto</label><input type=' text'  name='CodProyecto'  id='CodProyecto'  class=' form-control'  value='{{ cdp.codigo_proyecto }}' readonly required ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Id del cupo</label><input type=' text'  name='IdCupo'  id='IdCupo'  class=' form-control'  value='{{ cdp.id_cupo_paa }}' readonly ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del cupo</label><input type=' text'  name='DescripcionCupo'  id='DescripcionCupo'  class=' form-control'  value='{{ cdp.descripcion_cupo }}' readonly ></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nompre del proyecto</label><input type=' text'  name='NompreProyecto'  id='NompreProyecto'  class=' form-control'  value='{{ cdp.nombre_proyecto }}' readonly ></div></div>
+                        <div class=' col-md-8 col-lg-8' ><div class=' form-group' ><label>Descripcion del objeto</label><textarea  name='ObjetoDelContrato'  id='ObjetoDelContrato'  class=' form-control'  required >{{ cdp.descripcion_objeto }}</textarea></div></div>
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del postulante</label><input type=' text'  name='nombre_postulante'  id='nombre_postulante'  class=' form-control'  value='{{cdp.display_postulante}}' readonly  required ></div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><h3>
+                            DOCUMENTOS A GENERAR
+                        </h3></div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-12"><h3>
+                            <div class=' col-md-4 col-lg-4' ><a href="{% url 'certificado_no_planta' cdp.id %}" class="btn btn-primary">Diligenciar datos para documentos</a></div>
+                        </h3></div>
+                    </div> 
+
+                    {% for documento in documentos  %}
+                    <div class="row">
+                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>{{documento.texto}}</label></div></div>
+                        <div class=' col-md-4 col-lg-4' ><a href="{% url documento.descripcion cdp.id %}" class="btn btn-primary" target="_blank">Ver Documento</a></div>
+                    </div>
+                    {%endfor%}
+                    
+                    <div class="form-row">
+                        
+                        <div class="col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="asignar" vuale="buscar" >Asignar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                </form>                            
+            </div>
+        </div>
+          <!-- /.card -->
+
+
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+{% endblock %}

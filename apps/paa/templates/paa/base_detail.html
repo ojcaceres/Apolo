@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'paa_Base_list' %}">
+    Base Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>numero_contrato</td><td>{{ object.numero_contrato }}</td></tr>
+    <tr><td>tipologia</td><td>{{ object.tipologia }}</td></tr>
+    <tr><td>modalidad</td><td>{{ object.modalidad }}</td></tr>
+    <tr><td>fechasuscripcion</td><td>{{ object.fechasuscripcion }}</td></tr>
+    <tr><td>fechafinal</td><td>{{ object.fechafinal }}</td></tr>
+    <tr><td>plazo</td><td>{{ object.plazo }}</td></tr>
+    <tr><td>idcupo</td><td>{{ object.idcupo }}</td></tr>
+    <tr><td>numerocdp</td><td>{{ object.numerocdp }}</td></tr>
+    <tr><td>numerocrp</td><td>{{ object.numerocrp }}</td></tr>
+    <tr><td>idcupoaju</td><td>{{ object.idcupoaju }}</td></tr>
+    <tr><td>fecharegistro</td><td>{{ object.fecharegistro }}</td></tr>
+    <tr><td>fuente</td><td>{{ object.fuente }}</td></tr>
+    <tr><td>proyecto</td><td>{{ object.proyecto }}</td></tr>
+    <tr><td>tipoidcontratista</td><td>{{ object.tipoidcontratista }}</td></tr>
+    <tr><td>numeroid</td><td>{{ object.numeroid }}</td></tr>
+    <tr><td>nombrecontratista</td><td>{{ object.nombrecontratista }}</td></tr>
+    <tr><td>idsupervisor</td><td>{{ object.idsupervisor }}</td></tr>
+    <tr><td>nombresupervisor</td><td>{{ object.nombresupervisor }}</td></tr>
+    <tr><td>valorcrp</td><td>{{ object.valorcrp }}</td></tr>
+    <tr><td>anulaciones</td><td>{{ object.anulaciones }}</td></tr>
+    <tr><td>valorneto</td><td>{{ object.valorneto }}</td></tr>
+    <tr><td>valorcontrato</td><td>{{ object.valorcontrato }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

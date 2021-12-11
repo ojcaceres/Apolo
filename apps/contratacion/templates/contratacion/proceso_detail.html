@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <p>
+        <a class="btn btn-light" href="{% url 'ListarRevision' %}">
+            proceso Listing
+        </a>
+    </p>
+
+    <table class="table">
+        <tr>
+            <td>numero_de_contrato</td>
+            <td>{{ object.numero_de_contrato }}</td>
+        </tr>
+        <tr>
+            <td>objeto</td>
+            <td>{{ object.objeto }}</td>
+        </tr>
+        <tr>
+            <td>numero_crp</td>
+            <td>{{ object.numero_crp }}</td>
+        </tr>
+        <tr>
+            <td>numero_cdp</td>
+            <td>{{ object.numero_cdp }}</td>
+        </tr>
+        <tr>
+            <td>numero_de_proceso</td>
+            <td>{{ object.numero_de_proceso }}</td>
+        </tr>
+        <tr>
+            <td>ultima_actualizacion</td>
+            <td>{{ object.ultima_actualizacion }}</td>
+        </tr>
+        <tr>
+            <td>valor_cdp</td>
+            <td>{{ object.valor_cdp }}</td>
+        </tr>
+        <tr>
+            <td>fecha_terminacion_con_adicion</td>
+            <td>{{ object.fecha_terminacion_con_adicion }}</td>
+        </tr>
+        <tr>
+            <td>documento_de_identidad</td>
+            <td>{{ object.documento_de_identidad }}</td>
+        </tr>
+        <tr>
+            <td>numero_caso</td>
+            <td>{{ object.numero_caso }}</td>
+        </tr>
+        <tr>
+            <td>fecha_reparto</td>
+            <td>{{ object.fecha_reparto }}</td>
+        </tr>
+        <tr>
+            <td>nombre_contratista</td>
+            <td>{{ object.nombre_contratista }}</td>
+        </tr>
+        <tr>
+            <td>nombre_supervisor</td>
+            <td>{{ object.nombre_supervisor }}</td>
+        </tr>
+        <tr>
+            <td>valor_crp</td>
+            <td>{{ object.valor_crp }}</td>
+        </tr>
+    </table>
+    <a class="btn btn-primary" class="btn btn-primary shadow-2 mb-4" href="{{ object.get_update_url }}">Edit</a>
+
+{% endblock %}

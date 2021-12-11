@@ -1,0 +1,15 @@
+Django<3
+django-extensions==3.1.0
+djangorestframework
+django-jazzmin==2.4.3
+dj-pagination
+numpy==1.19.3
+#tablib==0.12.1
+tablib==3.0.0
+django-import-export==2.5.0
+openpyxl==3.0.6
+django-role-permissions==3.1.1
+xmltodict3
+requests
+reportlab
+psycopg2==2.8.6

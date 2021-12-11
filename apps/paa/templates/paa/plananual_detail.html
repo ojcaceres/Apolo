@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'paa_PlanAnual_list' %}">
+    PlanAnual Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>estadodelcupo</td><td>{{ object.estadodelcupo }}</td></tr>
+    <tr><td>nombreplan</td><td>{{ object.nombreplan }}</td></tr>
+    <tr><td>vigencia</td><td>{{ object.vigencia }}</td></tr>
+    <tr><td>proyecto</td><td>{{ object.proyecto }}</td></tr>
+    <tr><td>nombreproyecto</td><td>{{ object.nombreproyecto }}</td></tr>
+    <tr><td>fuentedefinanciacion</td><td>{{ object.fuentedefinanciacion }}</td></tr>
+    <tr><td>componentegasto</td><td>{{ object.componentegasto }}</td></tr>
+    <tr><td>unidadoperativa</td><td>{{ object.unidadoperativa }}</td></tr>
+    <tr><td>localidad</td><td>{{ object.localidad }}</td></tr>
+    <tr><td>nombrerubroprespupuestal</td><td>{{ object.nombrerubroprespupuestal }}</td></tr>
+    <tr><td>pmrcodigo</td><td>{{ object.pmrcodigo }}</td></tr>
+    <tr><td>pmrnombre</td><td>{{ object.pmrnombre }}</td></tr>
+    <tr><td>metacodigo</td><td>{{ object.metacodigo }}</td></tr>
+    <tr><td>nombredelameta</td><td>{{ object.nombredelameta }}</td></tr>
+    <tr><td>codigoactividad</td><td>{{ object.codigoactividad }}</td></tr>
+    <tr><td>nombreactividad</td><td>{{ object.nombreactividad }}</td></tr>
+    <tr><td>nombreservicio</td><td>{{ object.nombreservicio }}</td></tr>
+    <tr><td>descripcioncupo</td><td>{{ object.descripcioncupo }}</td></tr>
+    <tr><td>idcupo</td><td>{{ object.idcupo }}</td></tr>
+    <tr><td>fechaestimadaproceso</td><td>{{ object.fechaestimadaproceso }}</td></tr>
+    <tr><td>fechaestimadacompra</td><td>{{ object.fechaestimadacompra }}</td></tr>
+    <tr><td>fechaestimadapago</td><td>{{ object.fechaestimadapago }}</td></tr>
+    <tr><td>fecha_radicacion</td><td>{{ object.fecha_radicacion }}</td></tr>
+    <tr><td>plazo</td><td>{{ object.plazo }}</td></tr>
+    <tr><td>presupuestoprogramado</td><td>{{ object.presupuestoprogramado }}</td></tr>
+    <tr><td>modificaciones</td><td>{{ object.modificaciones }}</td></tr>
+    <tr><td>ejecucion</td><td>{{ object.ejecucion }}</td></tr>
+    <tr><td>presupuestovigente</td><td>{{ object.presupuestovigente }}</td></tr>
+    <tr><td>cupoconvigenciafutura</td><td>{{ object.cupoconvigenciafutura }}</td></tr>
+    <tr><td>descripcionobjeto</td><td>{{ object.descripcionobjeto }}</td></tr>
+    <tr><td>nombremodalidadadquisicion</td><td>{{ object.nombremodalidadadquisicion }}</td></tr>
+    <tr><td>modalidaddeseleccion</td><td>{{ object.modalidaddeseleccion }}</td></tr>
+    <tr><td>nombremodalidadseleccion</td><td>{{ object.nombremodalidadseleccion }}</td></tr>
+    <tr><td>tipodecontratacion</td><td>{{ object.tipodecontratacion }}</td></tr>
+    <tr><td>nombretipodecontratacion</td><td>{{ object.nombretipodecontratacion }}</td></tr>
+    <tr><td>individualconjunta</td><td>{{ object.individualconjunta }}</td></tr>
+    <tr><td>dependencia</td><td>{{ object.dependencia }}</td></tr>
+    <tr><td>nombredependencia</td><td>{{ object.nombredependencia }}</td></tr>
+    <tr><td>unspsc</td><td>{{ object.unspsc }}</td></tr>
+    <tr><td>numerocdp</td><td>{{ object.numerocdp }}</td></tr>
+    <tr><td>valorcdp</td><td>{{ object.valorcdp }}</td></tr>
+    <tr><td>fechadesolicituddecdp</td><td>{{ object.fechadesolicituddecdp }}</td></tr>
+    <tr><td>fechadecdp</td><td>{{ object.fechadecdp }}</td></tr>
+    <tr><td>saldodecupodespuesdecdp</td><td>{{ object.saldodecupodespuesdecdp }}</td></tr>
+    <tr><td>objetodelcontrato</td><td>{{ object.objetodelcontrato }}</td></tr>
+    <tr><td>valordelcrp</td><td>{{ object.valordelcrp }}</td></tr>
+    <tr><td>saldodedisponibilidadesporcomprometer</td><td>{{ object.saldodedisponibilidadesporcomprometer }}</td></tr>
+    <tr><td>fechadegiros</td><td>{{ object.fechadegiros }}</td></tr>
+    <tr><td>compromisossinautorizacion</td><td>{{ object.compromisossinautorizacion }}</td></tr>
+    <tr><td>historicocaso</td><td>{{ object.historicocaso }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

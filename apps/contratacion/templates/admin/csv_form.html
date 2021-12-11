@@ -1,0 +1,17 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+    <div>
+        <form action="." method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+
+            <button class="btn btn-outline-success float-right"
+                    type="submit"
+                    name="tipo"
+                    value="Radicacion">
+                Procesos Radicacion
+            </button>
+        </form>
+    </div>
+{% endblock %}

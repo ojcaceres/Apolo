@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+ <div class="pcoded-content">
+  <p>
+   <form action="" method="post">
+            {{ form }}  
+            <br></br>
+            <button class="btn btn-primary shadow-2 mb-4" type="submit">
+                   <i class="fa fa-arrow-right" aria-hidden="true"></i>Consulta
+            </button>
+    </form>
+ </p>
+
+    {% if estado %}
+        <br/>
+        <p>Estado: {{ estado }}</p>
+    {% endif %}
+
+ </div>  
+
+{% endblock %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de idoneidad</title>
+    <style type="text/css">
+        .border_sombreado{            
+            border: 1px solid #000000;
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <table style="border: 1px; border-collapse: collapse;">
+        <tr>
+            <td>VERIFICACIÓN IDONEIDAD Y EXPERIENCIA PARA LA
+                PRESTACIÓN DE SERVICIOS PROFESIONALES Y/O APOYO
+                A LA GESTION</td>
+        </tr>        
+        <tr>
+            <td>&nbsp;</br>&nbsp;</br>&nbsp;</br></td>
+        </tr>        
+        <tr>
+            <td class="border_sombreado"  ><strong>PROPONENTE:</strong></td>
+        </tr>        
+        <tr>
+            <td>
+                Nombre: {{postulante.primer_nombre}} {{postulante.segundo_nombre}} {{postulante.primer_apellido}} {{postulante.segundo_apellido}}
+                <br>
+                Cédula:{{postulante.numero_documento}}
+            </td>
+        </tr>        
+        <tr>
+            <td class="border_sombreado">OBJETO:</td>
+        </tr>
+        <tr>
+            <td>
+                {{radicacion_cdp_documentos.objeto}}
+            </td>
+        </tr>
+         <tr>
+            <td class="border_sombreado">CONDICIONES Y/O REQUISITOS:</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <table width="100%" >
+                    <tr>
+                        <th>
+                           Condiciones
+                        </th>
+                        <th>
+                            Cumple(Sí/No)
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Experiencia Relacionada: {{radicacion_cdp_documentos.experiencia_relacionada}}
+                        </td>
+                        <td>
+                            Sí
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Formación Académica: {{radicacion_cdp_documentos.formacion_academica}}
+                        </td>
+                        <td>
+                            Sí
+                        </td>
+                    </tr>
+
+                    {% for doc in documentos %}
+                    <tr>
+                        <td>
+                            {{doc.fields.nombre_archivo_a_cargar}}
+                        </td>
+                        <td>
+                            {% if doc.fields.id_estado == 3 %} Sí {%else%} Sí {%endif%}
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" class="border_sombreado">CONCEPTO TECNICO:</td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                Teniendo en cuenta lo anterior se deja constancia que
+                cumple con la idoneidad y experiencia requerida por la SDIS en los estudios previos y la documentación soporte que forma parte
+                del expediente contractual. En consecuencia se ha confirmado que el perfil, la idoneidad y experiencia del contratista se
+                encuentran acreditados en la hoja de vida del sideap adjunta. Por lo tanto se le recomienda al ordenador del gasto de la entidad
+                adelantar el proceso. <br><br>
+                La idoneidad y experiencia requerida esta cotejada con la resolucion de honorarios, perfiles, con sus modificaciones
+                establecidas por la entidad para la vigencia.
+                <br><br>&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" class="border_sombreado">EVALUADORES:</td>
+        </tr>
+        <tr>
+                <td>
+                    Nombre: {{radicacion_cdp_documentos.nombre_remitente}}
+                    <br>
+                    cargo:{{radicacion_cdp_documentos.cargo_remitente}}
+                    <br>&nbsp;
+                    <br>&nbsp;
+                    <br>&nbsp;
+                    <br>&nbsp;
+               
+                    _________________________________________________________<br>
+                    Firma<br>
+                    <br>
+                </td>
+        </tr>
+
+        <tr>
+            <td><br>El presente certificado se expide el  {{radicacion_cdp_documentos.fecha_expedicion}}</td>
+        </tr>        
+        <tr>
+            <td>
+               
+            </td>
+        </tr>
+    </table>
+    
+    
+</body>
+</html>

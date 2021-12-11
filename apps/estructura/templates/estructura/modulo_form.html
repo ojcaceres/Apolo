@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_modulo_list' %}">
+    modulo Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="nombre">nombre: </label>
+  <input class="form-control col-sm-10" id="nombre" type="text" name="nombre" value="{{ object.nombre }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="numero">numero: </label>
+  <input class="form-control col-sm-10" id="numero" type="number" name="numero" value="{{ object.numero }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

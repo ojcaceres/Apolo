@@ -1,0 +1,51 @@
+  {% if total.valor_afectacion__sum > 0 %}
+                 <div class="form-group">
+                                <label>CDPs Asociados al Proceso:</label>
+                                <table id="books-table" class="table-striped tall-row" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            id Cupo PAA
+                                        </th>
+                                        <th>
+                                            Número de CDP
+                                        </th>
+                                        <th>
+                                            Valor CDP
+                                        </th>
+                                        <th>
+                                            Descripcion Cupo
+                                        </th>
+                                        <th>
+                                            Valor Afectación
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cdp in cdps %}
+                                        <tr>
+                                            <td>
+                                                {{ cdp.id_cupo_paa }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.numero_cdp }} - {{ cdp.vigencia_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.descripcion_cupo }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_afectacion }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    <td></td><td></td><td></td><td><h6>VALOR CONTRATO</h6></td>
+                                    <td><h6>{{ total.valor_afectacion__sum }}</h6></td>
+
+
+                                    </tbody>
+                                </table>
+    </div>
+                {% endif %}

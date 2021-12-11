@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+    <style>
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+            color: red
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div style="margin-left: 20px">
+        <p>
+            <a class="btn btn-light" href="{{ request.META.HTTP_REFERER }}">
+                ← Listar Procesos
+            </a>
+        </p>
+
+         {% if proceso.devuelto == True %}
+              <div class="bg-primary col-sm-10"><h6 class="text-white mb-2">PROCESO DEVUELTO
+                  DESDE {{ proceso.estado_devolucion }}</h6></div>
+              </p>
+          {% endif %}
+        {% if proceso.link != None %}
+            <p class="col-sm-10" style="text-align:right;">
+            <a href="{{ proceso.link }}" target="_blank"> ver en Secop </a>
+        {% endif %}
+
+        <a href="" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" >
+                       Historial
+                    </a>
+<div class="collapse" id="collapseExample">
+<div class="form-group">
+                                <table id="history" class="table-striped tall-row" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Usuario
+                                        </th>
+                                        <th>
+                                            Estado
+                                        </th>
+                                        <th>
+                                            Novedad
+                                        </th>
+                                        <th>
+                                            Fecha
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for registro in registros %}
+                                        <tr>
+                                            <td>
+                                                {{ registro.usuario.first_name }}
+                                            </td>
+                                            <td>
+                                                {{ registro.estado }}
+                                            </td>
+                                            <td>
+                                                {{ registro.novedad }}
+                                            </td>
+                                            <td>
+                                                {{ registro.date }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+</div></div>
+
+
+        <div class="row">
+            <div class="col">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {%if novedad_previa %}
+                    <p> <label for="novedad">Novedad:</label><br>
+                        <input type="text" id="novedad" name="novedad" readonly id="novedad" value="{{ novedad_previa }}" class="form-control col-sm-10" autocomplete="false"> <br>
+                      </p>
+                      {% endif %}
+                    {{ form.as_p }}
+
+                 <p> <label for="novedad">Novedad:</label><br>
+                            <input type="text" id="novedad" name="novedad" value="{{ novedad_previa }}"  class="form-control col-sm-10"
+                                autocomplete="false"> <br></p>
+
+                    {% if total.valor_afectacion__sum > 0 %}
+                 <div class="form-group">
+                                <label>CDPs Asociados al Proceso:</label>
+                                <table id="books-table" class="table-striped tall-row" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            id Cupo PAA
+                                        </th>
+                                        <th>
+                                            Número de CDP
+                                        </th>
+                                        <th>
+                                            Valor CDP
+                                        </th>
+                                        <th>
+                                            Descripcion Cupo
+                                        </th>
+                                        <th>
+                                            Valor Afectación
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cdp in cdps %}
+                                        <tr>
+                                            <td>
+                                                {{ cdp.id_cupo_paa }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.numero_cdp }} - {{ cdp.vigencia_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.descripcion_cupo }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_afectacion }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    <td></td><td></td><td></td><td><h6>VALOR CONTRATO</h6></td>
+                                    <td><h6>{{ total.valor_afectacion__sum }}</h6></td>
+
+
+                                    </tbody>
+                                </table>
+    </div>
+                {% endif %}
+
+                     <button class="btn btn-primary shadow-2 mb-4" name="action" value="Next" type="submit">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Avanzar a {{ next_state }}
+                    </button>
+
+                      <button class="btn mb-4 " name="none" value="none" disabled type="button" </button>
+                     <button class="btn btn-secondary shadow-2 mb-4" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                       Devolver a {{ back_state }}
+                    </button>
+
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <p>
+                            <label for="usuario">Usuario Subsanacion:</label><br>
+                            <select class="form-control col-sm-10" name="usuario" id="usuario">
+                                <option value="*" selected>Favor seleccione un usuario</option>
+                                {% for user in usersub_list %}
+                                <option value="{{user.pk}}">{{user}}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+
+                        <button class="btn btn-secondary shadow-2 mb-4" name="action" value="Back" type="submit">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Devolver a {{ back_state }}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

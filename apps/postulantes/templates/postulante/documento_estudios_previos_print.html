@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudios Previos</title>
+    <style type="text/css">
+        .border_sombreado{            
+            border: 1px solid #000000;
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <table style="border: 1px; border-collapse: collapse;">
+        <tr>
+            <td class="border_sombreado">DOCUMENTO DE ESTUDIOS PREVIOS</td>
+        </tr>        
+        <tr>
+            <td></br>&nbsp;</td>
+        </tr>        
+        <tr>
+            <td>
+                De conformidad con lo establecido en el Decreto 1082 de 2015 Artículo 2.2.1.1.2.1.1, se realizan los presentes estudios
+                previos así:
+                <br/>&nbsp;
+            </td>
+        </tr>        
+        <tr>
+            <td>
+                <table border="1" width="80%" style="border-collapse: collapse;">
+                    <tr>
+                        <td style="width: 40%">
+                            Dependencia que elabora el Estudio
+                        </td>
+                        <td  style="width: 40%">
+                            {{radicacion_cdp_documentos.dependencia_remitente}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nombres del equipo técnico que participaron en la elaboración
+                        </td>
+                        <td>
+                            {{radicacion_cdp_documentos.equipo_elabora}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Revisó
+                        </td>
+                        <td>
+                            {{radicacion_cdp_documentos.reviso}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Aprobó
+                        </td>
+                        <td>
+                            {{radicacion_cdp_documentos.aprobo}}
+                        </td>
+                    </tr>
+                </table>
+                <br/>&nbsp;
+
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">1. DESCRIPCIÓN DE LA NECESIDAD QUE PRETENDE SATISFACER</td>
+        </tr> 
+        <tr>
+            <td>
+                <p>La constitución política prevé en el artículo 2 como fines del Estado: “Servir a la comunidad, promover la prosperidad general y garantizar la efectividad de los principios, derechos y deberes consagrados en la constitución; facilitar la participación de todos en las decisiones que los afectan y en la vida económica, política, administrativa y cultural de la nación; defender la independencia nacional, mantener la integridad territorial y asegurar la convivencia pacífica y la vigencia de un orden justo, al igual que establece que “… Las autoridades de la República están instituidas para proteger a todas las personas residentes en Colombia, en su vida, honra, bienes, creencias, y demás derechos y libertades, y para asegurar el cumplimiento de los deberes sociales del Estado y de los particulares”.</p>
+                <p>La Secretaría Distrital de Integración Social - SDIS, se encarga de liderar y formular las políticas sociales del Distrito Capital para la integración social de las personas, las familias y las comunidades, con especial atención en aquellas que están en mayor situación de pobreza y vulnerabilidad, es decir es una entidad que es líder de la política social. Pero además la SDIS tiene la función de prestación de algunos servicios sociales, atención integral de calidad que tiene un enfoque territorial e intergeneracional, para el desarrollo de capacidades que faciliten la inclusión social y mejoren la calidad de vida de la población en mayor condición de vulnerabilidad. Pero también la SDIS ejerce funciones para el restablecimiento de derechos de algunos grupos poblacionales. Es una entidad que tiene varios campos de acción en prevención, protección, promoción y restablecimientos de derechos fundamentales.</p>
+                <p>En actual gobierno que lidera la Alcaldesa Claudia López en ejecución del plan de desarrollo distrital el Plan de desarrollo económico, social, ambiental y de obras públicas del Distrito Capital 2020 - 2024 “Un nuevo contrato social y ambiental para la Bogotá del siglo XXI la SDIS tiene una transformación profunda en la atención social que venía desarrollándose, pues es necesario actualizar los servicios a la nueva política social de cara a la nueva fotografía social de Bogotá que incluye los indicadores de pobreza que venían del 2019 y el nuevo escenario que arroja la pandemia por la COVID 19 que develo las profundas desigualdades sociales en la capital. Por eso la línea transversal de la entidad para lograr esos objetivos se fundamenta en tres grades temas: 1. Estrategia territorial integral social - ETIS como modelo de atención para la puesta en marcha de servicios sociales en las 20 localidades de la Ciudad, orientado al trabajo territorial, la coordinación con otros sectores y el vínculo directo con las comunidades y hogares, a partir de la tropa social como herramienta de abordaje 2 El Sistema Distrital de Cuidado - SIDICU, como uno de los programas estratégicos en el que diferentes sectores del Distrito aportan al cumplimiento de metas relacionadas con el reconocimiento, redistribución y reducción de las cargas de trabajo del cuidado 3. Enfoque de género.</p>
+                <p>Si bien es cierto los servicios sociales requieren concretarse a través de bienes, también es cierto que la prestación de servicios de carácter personal es fundamental, pues son nuestros equipos los que abordan a las comunidades y los territorios con miras a realizar atenciones que mejore la calidad de vida de los beneficiarios, pero además con el objetivo de generar movilidad social en los hogares respectivos.</p>
+                <p>{{radicacion_cdp_documentos.descripcion_necesidad}}</p>
+                <p>Para el cumplimiento de lo anterior, el proyecto No. {{cdp.codigo_proyecto}} denominado {{cdp.nombre_proyecto}} tiene como objetivo  {{radicacion_cdp_documentos.objetivo}} y meta  {{radicacion_cdp_documentos.meta}} que para su cumplimiento requiere la contratación de servicios profesionales o de apoyo a la gestión.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">1.1. CONVENIENCIA:</td>            
+        </tr> 
+        <tr>
+            <td>
+                <p>Adicional a lo anteriormente expuesto, está claro que la misión y funciones de la entidad corresponden a variedad de modalidades que permite llegar a miles de personas y hogares en Bogotá, lo cual implica fortalecer un gran equipo interdisciplinario con el que se pueda accionar, de acuerdo a los proyectos de inversión existentes y las metas plan de desarrollo a cumplir y a la fecha esta entidad no cuenta con personal de planta suficiente para atender tal necesidad descrita debiéndose acudir a la contratación de prestación de servicios que se desarrollara con total autonomía administrativa y técnica del contratista, en el marco de los contratos de que trata el numeral 3 del artículo 32 de la ley 80 de 1993.</p>
+                <p>Por lo expuesto y para dar cumplimiento a PAA de la vigencia se requiere la contratación de prestación de servicios
+                (profesionales o apoyo a la gestión), con el objeto de {{cdp.descripcion_objeto}}.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="border_sombreado">2. OBJETO</td>
+        </tr>
+        <tr>
+            <td>
+                {{radicacion_cdp_documentos.objeto}}
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">3. ALCANCE DEL OBJETO</td>
+        </tr>
+        <tr>
+            <td>
+                {{radicacion_cdp_documentos.alcance_objeto}}
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">4. ANALISIS DEL SECTOR</td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    El Artículo 2.2.1.2.1.4.9 del Decreto 1082 del 2015, establece: “Las Entidades Estatales pueden contratar bajo la modalidad de contratación directa la prestación de servicios profesionales y de apoyo a la gestión con la persona natural o jurídica que esté en capacidad de ejecutar el objeto del contrato, siempre y cuando la Entidad Estatal verifique la idoneidad o experiencia requerida y relacionada con el área de que se trate. En este caso, no es necesario que la Entidad Estatal haya obtenido previamente varias ofertas, de lo cual el ordenador del gasto debe dejar constancia escrita.” (…) “Los servicios profesionales y de apoyo a la gestión corresponden a aquellos de naturaleza intelectual diferentes a los de consultoría que se derivan del cumplimiento de las funciones de la Entidad Estatal, así como los relacionados con actividades operativas, logísticas, o asistenciales.”</p>
+                    <p><strong> MARCO LEGAL QUE REGULA EL SECTOR </strong></p>
+                    <p>Normatividad Aplicable a la Entidad: Constitución Política de Colombia, Ley 1474 de 2011, Decreto Ley 019 de 2012, Decreto 1082 de 2015, Ley 489 de 1998, Códigos diferentes disciplinas jurídicas. </p>
+                    <p>
+                    Normatividad Aplicable a la Actividad del Contratista: Constitución Política de Colombia, la Ley 100 de 1993, la Ley 1474 de 2011, Decreto – Ley 019 de 2012, Decreto 1082 de 2015 </p>
+                    <p>
+                    Si bien, en la contratación directa para contratos de prestación de servicios, no es obligatorio hacer análisis de la oferta, en el presente caso, los servicios a contratar pueden ser prestados por personas naturales o personas jurídicas, sin embargo, como se ha indicado, la entidad considera procedente, la celebración de contrato con Persona Natural que, por su idoneidad y experiencia indicadas en el análisis de la perspectiva técnica, puedan ejecutar el objeto contractual.</p>
+                    <p>
+                    De acuerdo con la Codificación de Bienes y Servicios del Código Estándar de productos y servicios de Naciones Unidas, los servicios a suministrar se encuentran codificados, hasta el cuarto nivel de la siguiente manera:</p>                    
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="1" style="border-collapse: collapse;">
+                    <tr>
+                        <td>Código Segmento</td>
+                        <td>Nombre Segmento</td>
+                        <td>Código Familia</td>
+                        <td>Nombre Familia</td>
+                        <td>Código Clase </td>
+                        <td>Nombre Clase </td>
+                        </tr>                        
+                    <tr>
+                    <td> 80000000 </td>
+                    <td>Servicios de Gestión, Servicios Profesionales de Empresas y Servicios Administrativos </td>
+                    <td>80110000 </td>
+                    <td>Servicios de Recursos Humanos</td>
+                    <td>80111500</td>
+                    <td>Desarrollo de Recursos Humanos </td>
+                    </tr>
+
+                    </table>
+                    <br>&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Que en el presente caso el valor de los honorarios fue calculado teniendo en cuenta el servicio a prestar, la formación y experiencia de quien se desempeñará como contratista prestando sus servicios, de acuerdo con la resolución No 2653 de 2020, de obligatoria aplicación. La cual se emitió con base en análisis de mercado y comparativo frente a otras Entidades del Nivel Distrital y Nacional.</p>
+                <p>Es importante señalar que los honorarios mensuales incluyen todos los impuestos de orden nacional o distrital y los gastos en que incurre el contratista para la legalización y perfeccionamiento del contrato, así como los pagos de salud, pensión y ARL.</p>
+                <p>De conformidad con lo expuesto, encuentra la SDIS que en el caso que nos ocupa el análisis de sector nos permite concluir que la contratación propuesta es viable bajo el perfil requerido y con los honorarios y productos a desarrollar.</p>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="border_sombreado">5. CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL</td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+                <table border="1" style="border-collapse: collapse;">
+                <tr><td>No. CDP</td><td>No. Proyecto</td><td>PROYECTO</td><td>DESCRIPCIÓN DEL RUBRO</td><td>Valor del CDP</td><td>Valor afectado del CDP</td>
+
+                </tr><tr>
+                <td>{{cdp.numero_cdp}}</td><td>{{cdp.codigo_proyecto}}</td><td>{{cdp.nombre_proyecto}}</td><td style="text-align:right">{{cdp.valor_cdp}}</td><td style="text-align:right">{{cdp.valor_contrato}}</td></tr>
+                </table>
+                <br/>&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">6. MODALIDAD DE SELECCIÓN DEL CONTRATISTA Y SU JUSTIFICACIÓN, INCLUYENDO LOS FUNDAMENTOS JURÍDICOS.</td>
+        </tr>
+
+        <tr>
+            <td >
+                <p>Teniendo en cuenta que se pretende por parte de la Secretaria Distrital de Integración Social – SDIS la suscripción de un Contrato de Prestación de Servicios (Profesionales o apoyo a la gestión), de acuerdo con el objeto a contratar y la naturaleza de este, la selección para la escogencia del contratista será a través de la modalidad de CONTRATACION DIRECTA. Mediante esta modalidad de selección, la entidad podrá contratar directamente con la persona natural que esté en capacidad de ejecutar el objeto del contrato y que acredite idoneidad y experiencia relacionada con la materia del mismo, sin que sea necesario obtener previamente pluralidad de ofertas.</p>
+                <p>El fundamento legal de la modalidad se encuentra contemplado en Literal h) numeral 4º artículo 2º de la Ley 1150 de 2007, que establece como causal de contratación directa la prestación de servicios profesionales, al señalar: “h) Para la prestación de servicios profesionales y de apoyo a la gestión, o para la ejecución de trabajos artísticos que sólo puedan encomendarse a determinadas personas naturales;”. Norma que a su vez se encuentra reglamentada por el Decreto 1082 de 2015, artículo 2.2.1.2.1.4.9 el cual preceptúa: “Las entidades estatales pueden contratar bajo la modalidad de contratación directa la prestación de servicios profesionales y de apoyo a la gestión con la persona natural o jurídica que esté en capacidad de ejecutar el objeto del contrato, siempre y cuando la entidad estatal verifique la idoneidad o experiencia requerida y relacionada con el área de que se trate. En este caso, no es necesario que la entidad estatal haya obtenido previamente varias ofertas, de lo cual el ordenador del gasto debe dejar constancia escrita”.</p>
+                <p>Los servicios profesionales y de apoyo a la gestión corresponden a aquellos de naturaleza intelectual diferentes a los de consultoría que se derivan del cumplimiento de los proyectos a través de los cuales se materializa el objeto de la entidad.</p>
+                <p>La Secretaría Distrital de Integración Social considera que la modalidad de selección pertinente para contratar la prestación de servicios personales de la {{radicacion_cdp_documentos.dependencia_remitente}}</p>
+            </td>
+        </tr>       
+       <tr>
+            <td class="border_sombreado">6. CARACTERÍSTICAS DE IDONEIDAD Y O EXPERIENCIA CON QUIEN SE REQUIERE CONTRATAR</td>
+        </tr>
+        <tr>
+            <td >
+                <p> {{radicacion_cdp_documentos.experiencia_relacionada}}</p>
+                <p>{{radicacion_cdp_documentos.formacion_academica}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">7. ESTUDIO ECONÓMICO</td>
+        </tr>
+         <tr>
+            <td >
+                <p> <strong>7.1. Estructura de costos: </strong>El valor de los honorarios, incluye el valor de los aportes a salud, riesgos laborales y pensión, los costos asociados a la ejecución del contrato.</p>
+                {%if radicacion_cdp_documentos.es_regimen_comun == 1%}
+                <table border="1" style="border-collapse: collapse;">
+                    <tr><td>Costos de Transacción</td><td>Tasa / Tarifa </td><td>% </td><td>Descripción</td></tr>
+                        <tr><td>Retención en la Fuente</td><td>0</td><td>0</td><td>DE CONFORMIDAD CON LAS NORMAS TRIBUTARIAS VIGENTES PARA CADA PAGO</td></tr>
+                    <tr><td>Retención ICA</td><td>9,66</td><td>1000</td><td></td></tr>
+                        <tr><td>Estampilla para el bienestar del Adulto Mayor</td><td>2</td><td>100</td><td></td></tr>
+                        <tr><td>PROCULTURA</td><td>0,5</td><td>100</td><td></td></tr>
+                        <tr><td>IVA</td><td>19</td><td>100</td><td></td></tr>
+                    </table>
+                {%else%}
+                <table border="1" style="border-collapse: collapse;">
+                    <tr><td>Costos de Transacción</td><td>Tasa / Tarifa </td><td>% </td><td>Descripción</td></tr>
+                        <tr><td>Retención en la Fuente</td><td>0</td><td>0</td><td>DE CONFORMIDAD CON LAS NORMAS TRIBUTARIAS VIGENTES PARA CADA PAGO</td></tr>
+                        <tr><td>Retención ICA</td><td>9,66</td><td>1000</td><td></td></tr>
+                        <tr><td>Estampilla para el bienestar del Adulto Mayor</td><td>2</td><td>100</td><td></td></tr>
+                        <tr><td>PROCULTURA</td><td>0,5</td><td>100</td><td></td></tr>
+                </table>
+                {%endif%}
+                
+                <p><strong>7.2. Análisis Presupuesto Asignado al Proceso:</strong> El valor de los honorarios fue calculado teniendo en cuenta la resolución de perfiles y honorarios expedida para la presente vigencia. Es importante señalar que los honorarios mensuales definidos en el numeral 12.3 del presente documento, refleja el común denominador dentro de las actividades de prestación de servicios en el sector territorial y nacional; incluyendo los impuestos de orden nacional o distrital y los gastos en que incurre el contratista para la legalización y perfeccionamiento del contrato, así como los pagos de salud, ARL y pensión.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">8. ADMINISTRACIÓN DEL RIESGO</td>
+        </tr>
+         <tr>
+            <td >
+                <p> 
+                    El Decreto 1082 de 2015 define riesgo como un evento que puede generar efectos adversos y de distinta magnitud en el logro de los objetivos del proceso de Contratación o en la ejecución del contrato, también establece en su artículo 2.2.1.1.1.6.3 que la Entidad Estatal debe evaluar el riesgo que el proceso de contratación representa para el cumplimiento de sus metas y objetivos, de acuerdo con los manuales y guías que para el efecto expida Colombia Compra Eficiente, para ello, la Secretaria Distrital de Integración Social – SDIS, en cumplimiento de los parámetros dados por la Ley 1082 de 2015, procede a analizar los riesgos de la siguiente manera:                    
+                </p>
+                <p>
+                    De acuerdo con lo establecido con el artículo 2.2.1.1.1.6.3.deI Decreto 1082 de 2015, la evaluación del riesgo que el proceso representa para el cumplimiento de las metas del manual y guías establecidas por Colombia Compra Eficiente, se elaboróla respectiva Matriz, la cual es incorporada precisando que salvo a las situaciones específicamente mencionadas y como principio general, el contratista asumirá los efectos económicos de todos aquellos sucesos previsibles y de normal ocurrencia para las actividades que son objeto del presente proceso de contratación.
+                </p>
+                <p>
+                    Matriz incorporada al final del documento de estudio previo.
+                </p>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="border_sombreado">9. DOCUMENTOS REQUERIDOS</td>
+        </tr>
+
+        <tr>
+            <td >
+                <p>1. Fotocopia del documento de identidad.</p>
+                    <p>2. Los hombres adicionalmente, fotocopia de la libreta militar o del documento idóneo expedido por la autoridad militar competente. (hasta los 50 años).</p>
+                    <p>3. Formato único de hoja de vida de la Función Pública - SIDEAP, debidamente diligenciado y firmado.</p>
+                    <p>4. Formato de declaración de bienes y rentas de la Función Pública - SIDEAP, debidamente diligenciado y firmado.</p>
+                    <p>5. Consulta en línea de antecedentes judiciales y certificado del sistema, Registro Nacional de Medidas Correctivas RNMC expedidos por la Policía Nacional de Colombia.</p>
+                    <p>6. Boletín de responsables fiscales, expedido por la Contraloría General de la Nación.</p>
+                    <p>7. Certificado de antecedentes disciplinarios, expedido por la Procuraduría General de la Nación.</p>
+                    <p>8. Certificado de antecedentes disciplinarios, expedido por la Personería de Bogotá D. C.</p>
+                    <p>9. Fotocopia del RUT, en donde se indique las responsabilidades del contribuyente.</p>
+                    <p>10. Fotocopia del RIT, en donde se registra la información básica del contribuyente.</p>
+                    <p>11. Constancia de afiliación vigente al Régimen de Salud y Pensiones; Reporte de novedad debidamente radicado ante la EPS y AFP (dependiente a Independiente) y/o Soporte del último pago de Seguridad Social.</p>
+                    <p>12. Examen de salud ocupacional (En caso de encontrarse vigente y que se haya valorado el factor de riesgo más alto al cual estará expuesto en el contrato a ser suscrito)</p>
+                    <p>13. Certificación Bancaria expedida por la entidad financiera correspondiente, donde manifieste expresamente que posee cuenta corriente o de ahorros, en alguna entidad financiera afiliada al sistema automático de pagos SAP que maneja la Tesorería Distrital de Bogotá, con el fin de que la Secretaría consigne los pagos del contrato. Dicho documento deberá indicar el número y tipo de cuenta y el nombre de la entidad financiera.</p>
+                    <p>14. Fotocopia tarjeta o registro profesional (cuando aplique) para profesionales, técnicos, técnico profesional y tecnólogos. Adicionalmente para los abogados antecedentes expedidos por el Consejo Superior de la Judicatura.</p>
+                    <p>15. Certificación (es) de experiencia, que contenga (n) como mínimo: nombre ó razón social de la entidad ó empresa, período de vinculación, objeto y/o cargo desempeñado.</p>
+                    <p>16. Documento (s) que certifique (n) los estudios:</p>
+                    <p>17. Bachilleres, Técnicos, Técnicos profesionales, Tecnólogos y Profesionales: Diploma(s) o acta de grado. En caso de requerirse un estudiante, deberá adjuntarse la certificación (es) expedida (s) por la institución educativa respectiva, avalada por el Ministerio de Educación Nacional.</p>
+                    <p>18. Copia del certificado de inscripción en el Registro de Proponentes y Contratistas de la SDIS. (Si aplica, de acuerdo a la Resolución 1193 de 22 agosto de 2016).</p>
+                    <p>19. Formato de autorización de consulta de antecedentes de inhabilidades Ley 1918 de 2018 y Decreto 753 de 2019 (Si aplica)</p>
+                    <p>20. Certificado de antecedentes de inhabilidades Ley 1918 de 2018 y Decreto 753 de 2019 (Si aplica), no puede ser con fecha anterior a la fecha del Formato de autorización de consulta.</p>                                
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="border_sombreado">10. CONDICIONES GENERALES DEL CONTRATO</td>
+        </tr>
+
+         <tr>
+            <td >
+                <p><strong>10.1. PLAZO</strong></p>
+                <p>El plazo de ejecución del contrato es de {{radicacion_cdp_documentos.plazo_ejecucion_meses_letras}} ({{radicacion_cdp_documentos.plazo_ejecucion_meses}}) meses y {{radicacion_cdp_documentos.plazo_ejecucion_dias_letras}}  ({{radicacion_cdp_documentos.plazo_ejecucion_dias}}) días, contados a partir de la fecha de inicio de ejecución del contrato indicado en la plataforma SECOP II.</p>
+                <p><strong>PARAGRAFO PRIMERO:</strong> La SECRETARÍA no reconocerá valor alguno por los costos en que haya incurrido el contratista relacionados con la ejecución del contrato, que se hayan generado con anterioridad al cumplimiento de los requisitos de perfeccionamiento, legalización y ejecución del contrato, ó con posteridad al vencimiento del plazo de ejecución del mismo.</p>
+
+                {%if radicacion_cdp_documentos.aplica_paragrafo_suspension == '1' %}
+                <p><strong>PARAGRAFO SEGUNDO:</strong> La SECRETARÍA no reconocerá valor alguno por la suspension del contrato y bla bla bla bla.</p>
+                {%endif%}
+                <p><strong>10.2. VALOR</strong></p>
+                <p>
+                    El valor del contrato corresponde a {{radicacion_cdp_documentos.valor_mensual_contrato_letras}} ({{cdp.valor_contrato}}) M/CTE INCLUIDO IVA
+                </p>
+                <p><strong>10.3. FORMA DE PAGO</strong></p>
+                <p>
+                    Se pagará al contratista la suma {{radicacion_cdp_documentos.valor_mensual_contrato_letras}} ({{cdp.honorarios}}) PESOS M/CTE. mensualmente o en proporción a su ejecución en cortes mensuales (al día treinta 30 de cada mes), salvo lo atinente al inicio y finalización de los mismos los cuales se pagarán de acuerdo a los días ejecutados. <strong>PARÁGRAFO PRIMERO:</strong> Los pagos aquí referenciados estarán sujetos al aporte de la siguiente documentación: i). Cumplimientos de aportes a seguridad social para el periodo correspondiente. ii). Informe parcial o final avalado por el supervisor. iii). Cumplimiento de los trámites administrativos como diligenciamiento de la cuenta de cobro, expedición de facturas a que haya lugar. <strong>PARÁGRAFO SEGUNDO:</strong> A efectos de realización del pago final el supervisor tendrá que tramitarlo con los documentos que a continuación se enuncian: i). Cumplimientos de aportes a seguridad social para el período correspondiente (final) ii). Informe final avalado por el supervisor. iii). Entregar en medio magnético los archivos y trámites adelantados con ocasión del objeto del contrato. iv). Cumplimiento de los trámites administrativos a que haya lugar (paz y salvos y expedición de facturas cuando haya lugar). <strong>PARÁGRAFO TERCERO:</strong> Será responsabilidad exclusiva de la entidad a través de su supervisor gestionar los pagos correspondientes por las ejecuciones recibidas a satisfacción para el periodo en concreto (mes completo o fracción por periodo de inicio o final), está gestión deberá realizarse dentro de los veinte (20) primeros días calendario de cada mes. (Ley 1474 de 2011). <strong>PARÁGRAFO CUARTO:</strong> La cancelación del valor del contrato por parte de la Secretaría al contratista se hará mediante el Sistema Automático de Pagos, realizando consignaciones en la cuenta que posea el mismo en una entidad financiera, de acuerdo con la información suministrada por está en el momento de suscripción del presente documento. <strong>PARÁGRAFO QUINTO:</strong> Los pagos que efectué la Secretaría en virtud del presente contrato estarán sujetos a la Programación de Recursos del Programa Anual de Caja – PAC y los recursos disponibles en Tesorería. <strong>PARÁGRAFO SEXTO:</strong> Para efecto de los pagos previstos en la presente cláusula EL CONTRATISTA deberá acreditar el pago de los aportes parafiscales relativos al sistema de seguridad social integral cuando corresponda de conformidad con lo establecido en el artículo 23 de la Ley 1150 de 2007.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="border_sombreado">11. GARANTIAS</td>
+        </tr>
+
+         <tr>
+            <td >
+                {%if radicacion_cdp_documentos.aplican_garantias == '1' %}
+                <p>Teniendo en cuenta las condiciones de idoneidad de la persona que prestará el servicio, así como la estipulación de la forma de pago que se hará con posterioridad a la prestación del servicio, una vez haya sido recibido a satisfacción por parte del supervisor, es procedente dar aplicación a lo señalado en el artículo 2.2.1.2.1.4.5. del Decreto 1082 de 2015, por lo tanto, el presente CONTRATO DE PRESTACION DE SERVICIOS SI requiere la constitución de garantías por el/la contratista</p>
+                {%else %}
+                <p>Teniendo en cuenta las condiciones de idoneidad de la persona que prestará el servicio, así como la estipulación de la forma de pago que se hará con posterioridad a la prestación del servicio, una vez haya sido recibido a satisfacción por parte del supervisor, es procedente dar aplicación a lo señalado en el artículo 2.2.1.2.1.4.5. del Decreto 1082 de 2015, por lo tanto, el presente CONTRATO DE PRESTACION DE SERVICIOS NO requiere la constitución de garantías por el/la contratista.</p>
+                {%endif%}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="border_sombreado">12. OBLIGACIONES DEL CONTRATO</td>
+        </tr>
+
+         <tr>
+            <td >
+                <p><strong>12.1. OBLIGACIONES GENERALES DEL O LA CONTRATISTA:</strong></p>
+                <p>1. Tramitar afiliación al Sistema General de Riesgos Laborales de conformidad con lo establecido en el Artículo 2 de la Ley 1562 de 2012, como requisito previo para el inicio del contrato. 2. Desarrollar las actividades para el cumplimiento del objeto contractual de manera independiente, con sus propios medios, bajo su propio riesgo y responsabilidad, de conformidad con las necesidades de la entidad. 3. Presentar a la supervisión del contrato un informe mensual sobre las actividades realizadas durante la ejecución de este. 4. Responder por los documentos físicos y electrónicos que le sean entregados o que elabore en desarrollo del contrato, entregándolos al supervisor del contrato o a la dependencia correspondiente. 5. Conocer, apropiar y dar estricto cumplimiento a la política o lineamiento vigente de seguridad de la información de la Secretaría Distrital de Integración Social, como documento que propende por garantizar la confidencialidad, integridad y disponibilidad de la información de la Entidad. 6. Responder y hacer buen uso de los bienes de la entidad que eventualmente le sean facilitados para su ejecución contractual y al término del contrato hacer entrega de estos en el estado en que los recibió salvo el deterioro normal o daños ocasionados por caso fortuito o fuerza mayor al supervisor(a) del contrato. Se deberá aportar como requisito indispensable, el paz y salvo de bienes expedido por la Subdirección Administrativa y financiera 7. Suscribir oportunamente el Acta de Liquidación (si hay lugar a esta) del contrato de prestación de servicios. 8. Responder ante las autoridades competentes por los actos u omisiones que ejecute en desarrollo del contrato, cuando con ellos se cause perjuicio a la administración o a terceros, en los términos del Artículo 52 de la Ley 80 de 1993 9. Dar cumplimiento a los proyectos, programas, políticas, lineamientos, planes y estrategias ambientales establecidas por la entidad. Incluido el Plan Institucional de Gestión Ambiental - PIGA 10. Dar estricto cumplimiento al Ideario Ético del Distrito expedido por la Alcaldía Mayor de Bogotá D.C., así como a todas las normas en materia de ética y valores expedida por la Secretaría Distrital de Integración Social en la ejecución del contrato. 11. Dar cumplimiento a los Artículos 11 y 40 de la Ley 1098 del 8 de noviembre de 2006, por la cual se expide el Código de la Infancia y la Adolescencia. 12. Hacer entrega oficial al supervisor, al finalizar la ejecución del contrato, de los archivos a su cargo, así como de la información digital creada, procesada o modificada en cumplimiento de las obligaciones contractuales, debidamente organizados, rotulados y almacenados, atendiendo los estándares y directrices de gestión documental, sin que ello implique exoneración de la responsabilidad en caso de irregularidades. 13. El (La) CONTRATISTA debe estar a paz y salvo con gestión documental a la fecha de finalización del contrato. 14. Realizar el cargue de la información en las herramientas de sistemas de acuerdo con las actividades que desarrolle para el cumplimiento del objeto y obligaciones contractuales. 15. Identificar los procesos, procedimientos, instructivos, lineamientos, protocolos, formatos, riesgos, indicadores, acciones de mejora y demás directrices aplicables a su gestión, incluyendo los establecidos en el Sistema Integrado de Gestión, acogerlos e incorporarlos en sus actividades diarias. 16. Ejercer apoyo a la supervisión de los contratos que le sean designados, si hay lugar a ello, en virtud de lo dispuesto en el inciso segundo del Artículo 83 de la Ley 1474 de 2011. 17. Participar activamente en la implementación del Sistema Distrital de Cuidado y la Estrategia territorial integral social (ETIS) acorde con la naturaleza y objeto del contrato de acuerdo a las necesidades de la SDIS, bajo los lineamientos del supervisor. 18. Garantizar la aplicación de lineamientos y protocolos institucionales en el suministro de información, a través de los diferentes canales de difusión.19. No ejercer ninguna conducta que conlleve cualquier tipo de violencia (física y psicológica), negligencia, descuido, discriminación, exclusión y en general cualquier otro acto que afecte la integridad física y/o sicológica a cualquier participante o usuario de los servicios prestados o contratados por la entidad. 20. Denunciar ante la autoridad competente, todo tipo de maltrato, violencias o conductas que conlleven a la vulneración de derechos contra niños, niñas, adolescentes, mujeres, personas mayores, personas con discapacidad, personas con orientaciones sexuales o identidades de género no heteronormativas, personas pertenecientes a los diferentes grupos étnicos - raciales y la población víctima del conflicto armado, de conformidad con el Artículo 67 de la Ley 906 de 2004 “Código de Procedimiento Penal”, en concordancia con la Ley 734 de 2002 “Código Único Disciplinario” y la Ley 1474 de 2011 “Estatuto Anticorrupción”; al igual, que cualquier conducta que se encuentre tipificada como delito en la Ley 599 de 2000 “Código Penal”, y de manera especial las consagradas en el Título I Delitos contra la Vida y la Integridad Personal, Capítulo Tercero – de las lesiones personales – 21. Garantizar en todas sus actuaciones y en la prestación de los servicios materia del contrato, el absoluto respeto por la dignidad humana y a tratar con la consideración, respeto, imparcialidad y rectitud a las personas con que tenga relación con ocasión al cumplimiento de sus obligaciones contractuales. 22. Participar activamente en los procesos de atención social, calamidades públicas, emergencias de origen natural o antrópico a las que sea convocado, aplicando los protocolos y procedimientos adoptados por la Secretaría Distrital de Integración Social, dentro del Sistema Distrital de Gestión de Riesgos y Cambio Climático. 23. Presentar a él (la) supervisor(a) las recomendaciones médicas particulares que tenga para el desarrollo del contrato previa a la ejecución de este. 24. En el evento que él (la) CONTRATISTA al momento de suscribir el presente contrato pertenezca al régimen tributario simplificado y durante la vigencia del mismo adquiera la obligación de inscribirse en el régimen común, se compromete a realizar cambio de régimen ante la Dirección de Impuestos y Aduanas Nacionales de Colombia – DIAN, dentro de los términos que otorga la ley para reportar dicha situación a la supervisión con copia a la Subdirección Administrativa y Financiera y a la Subdirección de Contratación para lo cual aportará el Registro Único Tributario – RUT, actualizado, lo anterior de conformidad con el Literal c) del Artículo 437 y los Artículos 499 y 508-2 del Estatuto Tributario, con el fin de que se realicen los trámites pertinentes para efectos del pago. 25. El/la contratista deberá garantizar que durante la ejecución del contrato, actualizará la hoja de vida y la declaración juramentada de bienes y rentas en el Sistema de Información Distrital de Empleo y Administración Pública – SIDEAP y dar cumplimiento en lo señalado en la Ley 2013 de 2019 en lo que aplique. 26. Abstenerse de asesorar o suministrar información propia de la entidad para adelantar procesos judiciales contra el Distrito Capital, durante la ejecución del contrato. 27. Cuando en cumplimiento del objeto contractual se desarrollen actividades relacionadas con una localidad específica, éstas deben articularse con la subdirección local correspondiente. 28.Las demás inherentes al objeto y la naturaleza del contrato y aquellas indicadas en las Obligaciones Específicas contenidas en el Estudio Previo, el cual hace parte integral del contrato y sus anexos.</p>
+                <p><strong>12.2. OBLIGACIONES ESPECÍFICAS DEL O LA CONTRATISTA::</strong></p>
+                <p>En desarrollo de las anteriores obligaciones, el contratista se obliga a suministrar los siguientes productos:</p>
+                <p> {{radicacion_cdp_documentos.obligaciones_especificas}}</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="border_sombreado">13. SUPERVISION</td>            
+        </tr>
+
+        <tr>
+            <td >
+                <p>La supervisión del presente contrato será ejercida por el {{radicacion_cdp_documentos.cargo_supervisor}} o quien designe por escrito el/la ordenador/a del gasto. En virtud de lo dispuesto en el inciso segundo del artículo 83 de la Ley 1474 de 2011 se podrá contratar personal de apoyo con el fin de ejercer adecuadamente la supervisión mediante un profesional o un equipo de profesionales, sin que dicho apoyo implique el traslado de la responsabilidad del ejercicio de la supervisión.</p>
+                <p><strong>PARÁGRAFO PRIMERO:</strong> El supervisor ejercerá la labor encomendada de acuerdo con lo establecido en la Ley y en el Manual de Supervisión de la SECRETARÍA, y en particular los relacionados con la ejecución, supervisión y liquidación del Contrato.</p>
+                <p><strong>PARAGRAFO SEGUNDO:</strong> El cambio en la supervisión será necesario informar al contratista a través de documento escrito. Copia de los documentos mencionados en este parágrafo deberá ser enviada a la Subdirección Administrativa y Financiera, para los efectos de los trámites de cuentas y al Área de Gestión Documental para que sean incorporados en el expediente contractual.</p>
+                <p>Dicho cambio en la supervisión no requerirá de la suscripción de modificación alguna del contrato y bastará con el memorando escrito.</p>
+                <p><strong>PARAGRAFO TERCERO:</strong> En el caso que el presente contrato tenga incidencia en el territorio, el supervisor deberá actuar en oportunidad con el fin de verificar el cumplimiento por parte del contratista en lo que tiene que ver con el desarrollo de sus actividades y la prestación del servicio en armonía con los lineamientos conceptuales, metodológicos y operativos de la Gestión Social Integral y la elaboración y presentación de un informe técnico ejecutivo para la liquidación del contrato que evidencie el impacto logrado de manera satisfactoria sobre las personas en el territorio durante la ejecución del contrato. Si el contrato NO es objeto de liquidación, dicho informe debe presentarse con el último informe de ejecución.</p>
+            </td>            
+        </tr>
+
+        <tr>
+            <td class="border_sombreado">14. ACUERDOS Y TRATADOS INTERNACIONALES EN MATERIA DE CONTRATACION PÚBLICA.</td>
+        </tr>
+        <tr>
+            <td >
+                <p>La modalidad de Contracción Directa NO está cobijada por un Acuerdo Comercial vigente para el Estado Colombiano en los términos del Manual para el Manejo de los Acuerdos Comerciales en Procesos de Contratación, elaborado por Colombia Compra Eficiente, el cual se puede consultar en el Sistema Electrónico para la Contratación Pública www.contratos.gov.co o www.colombiacompra.gov.co.), teniendo en cuenta que este Manual excluye esta modalidad de la aplicación de los Acuerdos Comerciales conforme a lo establecido en el Decreto 1082 de 2015.artículo 2.2.1.2.4.1.1 y subsiguientes.</p>
+            </td>            
+        </tr>
+        
+        <tr>
+            <td style="text-align: center;" class="border_sombreado"></td>
+        </tr>
+        <tr>
+                <td style="text-align: center;">
+                   
+                    <br>&nbsp;
+                    <br>&nbsp;
+                    <br>&nbsp;
+               
+                    _________________________________________________________<br>
+                    {{radicacion_cdp_documentos.nombre_remitente}}
+                    <br>
+                    {{radicacion_cdp_documentos.cargo_remitente}}
+                    <br>&nbsp;
+                    <br>
+                    <br>
+                </td>
+        </tr>
+
+        <tr>
+            <td><br>El presente documento se expide el  {{radicacion_cdp_documentos.fecha_expedicion}}</td>
+        </tr>        
+        <tr>
+            <td>
+               
+            </td>
+        </tr>
+    </table>
+    
+    
+</body>
+</html>

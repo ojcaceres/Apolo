@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+<style>
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+        color: red
+    }
+
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+</style>
+{% endblock stylesheets %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <!-- general form elements disabled -->
+
+        <div class="card card-primary shadow col-12">
+            <div class="card-header">
+                <h3 class="card-title">CERTIFICADO NO PLANTA</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            {% if mensaje_respuesta %}
+            <div class="alert alert-success alert-block shadow">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ mensaje_respuesta }}</strong>
+            </div>
+            {% endif %}
+            <form role="form" method="POST" action="{% url 'certificado_no_planta' cdp.id %}">
+                {% csrf_token %}
+               
+
+                {% include '../partials/encabezado_cupo.html' with cdp=cdp %}
+
+                <div class="row">
+                    <div class="col">
+                        <h3>Generación de documentos</h3>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Por favor complete la siguiente información para que los archivos sean generados
+                            satisfactoriamente</p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <h4>Archivo Certificación de no planta y Certificación de idoneidad</h4>
+                </div>
+
+                <div class="form-row">
+                    <div class=' col'>
+                        <div class="form-group">
+                            <label>Dependencia y cargo del solicitnate</label>
+                            <select name="dependencia_solicitante" id="dependencia_solicitante" class="form-control">
+                                {%for dependencia in dependencias %}
+                                <option value='{{dependencia.id}}'>{{dependencia}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class=' col'>
+
+                        <div class="form-group">
+                            <label>Dependencia y cargo de a quien va dirigido</label>
+                            <select name="dependencia_destinatario" id="dependencia_destinatario" class="form-control">
+                                {%for dependencia in dependencias %}
+                                <option value='{{dependencia.id}}'>{{dependencia}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class=' col'>
+                        <div class="form-group">
+                            <label>Formación académica</label>
+                            <textarea class="form-control" name='formacion_academica' rows=4>{{datos_estudios.formacion_academica}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class=' col'>
+                        <div class="form-group">
+                            <label>Experiencia relacionada</label>
+                            <textarea class="form-control" name='experiencia_relacionada' rows=4>{{datos_estudios.experiencia_relacionada}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <h4>Archivo de Estudios Previos</h4>
+                </div>
+
+                <div class='form-row'><div class='col'><div class='form-group'><label>Equipo que elabora los estudios previos</label><textarea class='form-control' name='equipo_elabora' rows='4'>{{datos_estudios.equipo_elabora}}</textarea></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>persona que revisa los estudios previos</label><input type='text'  class='form-control'  name='reviso' id='reviso' value='{{datos_estudios.reviso}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>persona que aprueba los estudios previos</label><input type='text'  class='form-control'  name='aprobo' id='aprobo' value='{{datos_estudios.aprobo}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>descripción de la necesidad</label><textarea class='form-control' name='descripcion_necesidad' rows='4'>{{datos_estudios.descripcion_necesidad}}</textarea></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>alcance del objeto</label><textarea class='form-control' name='alcance_objeto' rows='4'>{{datos_estudios.alcance_objeto}}</textarea></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>descripción del rubro</label><textarea class='form-control' name='descripcion_rubro' rows='4'>{{datos_estudios.descripcion_rubro}}</textarea></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>número del CDP</label><input type='text'  class='form-control'  name='numero_cdp' id='numero_cdp' value='{{datos_estudios.numero_cdp}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Número del proyecto</label><input type='text'  class='form-control'  name='numero_proyecto' id='numero_proyecto' value='{{datos_estudios.numero_proyecto}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Valor del CDP</label><input type='number' step='0.01'  class='form-control'  name='valor_cdp' id='valor_cdp' value='{{datos_estudios.valor_cdp|floatformat:2}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Valor afectado del CDP (valor del contrato)</label><input type='number' step='0.01'  class='form-control'  name='valor_afectado' id='valor_afectado' value='{{datos_estudios.valor_afectado|floatformat:2}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Defina si la persona es régimen común</label><select  name='es_regimen_comun' id='es_regimen_comun' class='form-control'><option value='0' >No</option><option value='1' >Sí</option></select></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Plazo de ejecución en meses</label><input type='number' step='1'  class='form-control'  name='plazo_ejecucion_meses' id='plazo_ejecucion_meses' value='{{datos_estudios.plazo_ejecucion_meses}}'> </div></div></div>
+                <!-- <div class='form-row'><div class='col'><div class='form-group'><label>Plazo de ejecucion en meses (letras)</label><input type='text'  class='form-control'  name='plazo_ejecucion_meses_letras' id='plazo_ejecucion_meses_letras' value='{{datos_estudios.plazo_ejecucion_meses_letras}}'> </div></div></div> -->
+                <div class='form-row'><div class='col'><div class='form-group'><label>Plazo de ejecución en días</label><input type='number' step='1'  class='form-control'  name='plazo_ejecucion_dias' id='plazo_ejecucion_dias' value='{{datos_estudios.plazo_ejecucion_dias}}'> </div></div></div>
+                <!-- <div class='form-row'><div class='col'><div class='form-group'><label>Plazo de ejecución en días (letras)</label><input type='text'  class='form-control'  name='plazo_ejecucion_dias_letras' id='plazo_ejecucion_dias_letras' value='{{datos_estudios.plazo_ejecucion_dias_letras}}'> </div></div></div> -->
+                <!-- <div class='form-row'><div class='col'><div class='form-group'><label>Valor total del contrato (letras)</label><input type='text'  class='form-control'  name='valor_total_contrato_letras' id='valor_total_contrato_letras' value='{{datos_estudios.valor_total_contrato_letras}}'> </div></div></div> -->
+                <!-- <div class='form-row'><div class='col'><div class='form-group'><label>Valor mensual del contrato (letras)</label><input type='text'  class='form-control'  name='valor_mensual_contrato_letras' id='valor_mensual_contrato_letras' value='{{datos_estudios.valor_mensual_contrato_letras}}'> </div></div></div> -->
+                <div class='form-row'><div class='col'><div class='form-group'><label>Defina si aplican garantías para el contrato</label><select  name='aplican_garantias' id='aplican_garantias' class='form-control'><option value='0' >No</option><option value='1' >Sí</option></select></div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Cargo del supervisor</label><input type='text'  class='form-control'  name='cargo_supervisor' id='cargo_supervisor' value='{{datos_estudios.cargo_supervisor}}'> </div></div></div>
+                <div class='form-row'><div class='col'><div class='form-group'><label>Dependencia del supervisor</label><input type='text'  class='form-control'  name='dependencia_supervisor' id='dependencia_supervisor' value='{{datos_estudios.dependencia_supervisor}}'> </div></div></div>
+                                              
+                <!-- /.form-row -->
+        </div>
+        <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" name="guardar" vuale="guardar">Guardar</button>
+                <a href="" class="btn btn-default float-right" name="regresar" vuale="regresar">Regresar</a>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+<!-- /.card -->
+
+
+<!-- /.card -->
+</div>
+<!-- /.col -->
+</div>
+<!-- /.row -->
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+{% load pagination_tags %}
+
+
+{% block title %} {{ variables.TITULO }} {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+
+        {% if mensaje %}
+            <script>
+                alert('{{ mensaje }}');
+            </script>
+        {% endif %}
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">{{ variables.TITULO_HEADER }}</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">{{ variables.RUTA }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">{{ variables.RUTA_DESC }}</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5 class="m-b-10">Items en consulta:</h5> <h5>{{ devueltos_list|length }}</h5>
+            </div>
+        </div>
+
+        <!-- [ breadcrumb ] end -->
+        <div class="card card-body">
+
+
+            <style>
+                .name {
+                    font-weight: bold;
+                }
+
+                .subtext {
+                    font-size: smaller;
+                }
+            </style>
+            <form method="GET">
+                <div class="row">
+                    <div class="col-md-1">Numero de Proceso:</div>
+                    <div class="col-md-3"><input type="text" id="no_proceso" name="no_proceso" value=""
+                                                 class="form-control " autocomplete="false"></div>
+                    <div class="col-md-3"><input type="submit" class="btn btn-primary"></div>
+                </div>
+            </form>
+            <br>
+
+            <form method="post">
+                {% csrf_token %}
+
+
+                <div class="row">
+                    <!-- [ stiped-table ] start -->
+
+                    <table id="books-table" class="table-striped tall-row">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Numero de Proceso</th>
+                            <th>Devuelto</th>
+                            <th>Contratista</th>
+                            <th>Objeto</th>
+                            <th>Editar PRSYC</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for proceso in procesos_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                    <span class="name">{{ proceso.numero_de_proceso }}</span> <br/>
+                                <td>{% if proceso.devuelto %}&#9989{% endif %}
+                                </td>
+
+                                <td>{{ proceso.nombre_contratista }}</td>
+                                <td style="max-width: 400px; word-wrap: break-word; ">{{ proceso.objeto }}</td>
+                                <td>
+                                    <!-- Botones para ver Modal popup -->
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                            onclick="window.location.href='/contratacion/{{ variables.URL }}{{ proceso.pk }}'">
+                                        <span class="fa fa-eye"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                    {% paginate using "includes/pagination.html" %}
+                    <!-- [ stiped-table ] end -->
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+{% block extrascripts %}{% endblock extrascripts %}

@@ -1,0 +1,343 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+
+{% block title %} Registro de Postulante {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Registro de Postulante</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Modulo de Creacion</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Registro de Postulante</a></li>
+                </ul>
+                <br>
+                <h3 class="card-title">Listado de documentos - {{ postulante.proceso }}</h3>
+            </div>
+            <div class="col-md-6">
+                <div class="card yearly-sales">
+                    <div class="card-block">
+                        <H6>{{ postulante.primer_nombre }} {{ postulante.segundo_nombre }}
+                            {{ postulante.primer_apellido }} {{ postulante.segundo_apellido }} </H6>
+                        <p>
+                            <span class="name">Documento: {{ postulante.numero_documento }}</span>  <br/>
+                            <span class="subtext">Código: {{ postulante.idpersonasideap }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- general form elements disabled -->
+        <div class="card card-primary shadow col-12">
+            <div class="card-body">
+                {% if mensaje_respuesta %}
+                    <div class="alert alert-success alert-block shadow">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ mensaje_respuesta }}</strong>
+                    </div>
+                {% endif %}
+
+                <form role="form" method="POST" action="{%url 'documentos_postulante' postulante.correoelectronicopersonal %}"  enctype="multipart/form-data">
+                {% csrf_token %}
+                    {% for doc in documentos %}
+                        <div class="form-row">
+                            <div class='col-md-12 col-lg-12'>
+                                <div class="form-group">
+                                    <label>{{doc.fields.nombre_archivo_a_cargar}}</label>
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <!-- <input type="text" name="label_{{doc.fields.id_param_archivo}}" id="label_{{doc.fields.id_param_archivo}}"
+                                    class="form-control" value="{{doc.fields.nombre_guardar}}" disabled> -->
+
+                                            {% if doc.fields.coleccion_az_digital != "0" %}
+                                                <a class="form-control" href="http://hv.apolopru.sdis.gov.co/get_documento_postulante?id_archivo_az={{doc.fields.coleccion_az_digital}}" target="_blank"> {{doc.fields.nombre_archivo_a_cargar}} </a>
+                                                <!-- <input type="hidden" name="id_archivo" value="{{doc.fields.id_archivo_cargado}}"> -->
+                                            {%else%}
+                                                <a class="form-control" href="#" style="color: red;">Documento no cargado</a>
+                                            {%endif%}
+                                            <input type="hidden" name="id_archivo_{{doc.fields.id_param_archivo}}" value="{{doc.fields.id_archivo_cargado|default_if_none:'0'}}">
+                                            <input type="hidden" name="id_param_archivo" value="{{doc.fields.id_param_archivo}}">
+                                            <!-- <input type="hidden" name="id_archivo" value="{{doc.fields.id_archivo|default_if_none:''}}"> -->
+                                        </div>
+                                        <div class="col-2">
+                                            <!-- <select  name="nuevo_estado_documento[{{doc.fields.id_archivo_cargado}}]" class="form-control" id="nuevo_estado"
+                                        required>
+                                        <option value="1" >Aprobado</option>
+                                        <option value="2" >Enviar a subsanar</option>
+                                        <option value="3" >No aplica</option> -->
+                                            <select  name="nuevo_estado_documento_{{doc.fields.id_param_archivo}}" class="form-control" id="nuevo_estado" required>
+                                                <option value = '' >Seleccione...</option>
+                                                <option value="1" {% if doc.fields.id_estado == 1 %} selected  {%endif%} >En proceso de carga</option>
+                                                <option value="2" {% if doc.fields.id_estado == 2 %} selected  {%endif%} >En Revisión SDIS</option>
+                                                <option value="3" {% if doc.fields.id_estado == 3 %} selected  {%endif%} >En Subsanación</option>
+                                                <option value="4" {% if doc.fields.id_estado == 4 %} selected  {%endif%} >Aprobado</option>
+                                                <option value="5" {% if doc.fields.id_estado == 5 %} selected  {%endif%} >No aplica</option>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                        {%if doc.fields.es_de_sideap > 0 %}
+                                        <p>Este documento debe ser cargado y/o actualizado a través de <a href="https://sideap.serviciocivil.gov.co/sideap/" target="balnk">SIDEAP</a></p>
+                                        {%endif%}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    {%endfor%}
+                    <div class="form-row">
+                        <div class='col-md-12 col-lg-10'>
+                            <div class="form-group">
+                                <label>Observaciones adicionales</label>
+                                {% for mensaje in mensajes %}
+                                    <div class="form-row">
+                                        {%if mensaje.fields.enviado_por == postulante.correoelectronicopersonal %}
+                                            <div class="col-2">&nbsp;</div>
+                                            <div class="col-10 alert alert-success alert-block shadow">
+                                                <b>De:</b>{{ mensaje.fields.enviado_por}} <b>Fecha:</b>{{mensaje.fields.fecha_mensaje}}
+                                                </br>
+                                                {{ mensaje.fields.mensaje }}
+                                            </div>
+                                        {%else%}
+                                            <div class="col-10 alert alert-warning alert-block shadow">
+                                                <b>De:</b>{{ mensaje.fields.enviado_por}} <b>Fecha:</b>{{mensaje.fields.fecha_mensaje}}
+                                                </br>
+                                                {{ mensaje.fields.mensaje }}
+                                            </div>
+                                            <div class="col-2">&nbsp;</div>
+                                        {%endif%}
+
+                                    </div>
+                                {% endfor %}
+                                <div class="form-row">
+                                    <div class="col-md-12">
+
+                                        <textarea name="mensaje" rows="5" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Nuevo estado del postulante</label>
+                                <select  name="nuevo_estado" class="form-control" id="nuevo_estado"
+                                         required>
+                                    { % for estados in estados_postulantes % }
+                                        <option value="{ {estados.valor}}" >{ {estados.texto}}</option>
+                                    { % endfor % }
+                                </select>
+                            </div> -->
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="hidden" name="id_radicacion_postulante" value="{{postulante.id}}">
+                                        <input type="hidden" name="correo" value="{{postulante.correoelectronicopersonal}}">
+                                        <button type="submit" class="btn btn-primary" name="enviar"
+                                                value="guardar">Guardar y enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <form role="form" method="POST" action="{%url 'documentos_postulante' postulante.correoelectronicopersonal %}"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                                
+                            <div class="form-group">
+                                <label>CDPs Asociados al Postulante:</label>
+                                <table id="books-table" class="table-striped tall-row" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            id Cupo PAA
+                                        </th>
+                                        <th>
+                                            Número de CDP
+                                        </th>
+                                        <th>
+                                            Valor CDP
+                                        </th>
+                                        <th>
+                                            Descripcion Cupo
+                                        </th>
+                                        <th>
+                                            Valor Afectación
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cdp in cdps %}
+                                        <tr>
+                                            <td>
+                                                {{ cdp.id_cupo_paa }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.numero_cdp }} - {{ cdp.vigencia_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_cdp }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.descripcion_cupo }}
+                                            </td>
+                                            <td>
+                                                {{ cdp.valor_afectacion }}
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-primary" name="enviar" value="borrar{{ cdp.id }}"><i class="fa fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    <td></td><td></td><td></td><td><h6>VALOR CONTRATO</h6></td>
+                                    <td><h6>{{ total.valor_afectacion__sum }}</h6></td>
+
+
+                                    </tbody>
+                                </table>
+                                <p>    </p>
+                                <button class="btn btn-primary shadow-2 mb-4" type="button" data-toggle="collapse"
+                                        data-target="#collapseAddCDP" aria-expanded="false" aria-controls="collapseAddCDP">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>Afectar {% if cdps %}Otro {% endif %}CDP
+                                </button>
+
+                                <div class="collapse" id="collapseAddCDP">
+                                    <form role="form" method="POST" action="{%url 'documentos_postulante' postulante.correoelectronicopersonal %}"  enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class=' col-md-3 col-lg-3' ><label><strong>Vigencia PAA</strong></label><input type=' text'  name='vigencia_plan'  id='vigencia_plan'  class=' form-control'  value=''   ></div>
+                                            <div class=' col-md-3 col-lg-3' ><label><strong>Número de CDP</strong></label><input type=' text'  name='numero_cdp'  id='numero_cdp'  class=' form-control'  value=''   ></div>
+                                            <div class=' col-md-3 col-lg-3' ><label><strong>Vigencia del CDP</strong></label><input type=' text'  name='vigencia_cdp'  id='vigencia_cdp'  class=' form-control'  value=''  ></div>
+                                            <div class="col-md-3 col-lg-3 align-bottom"><button type="submit" class="btn btn-primary" name="enviar" value="buscar_cdp" ><i class="fa fa-search" aria-hidden="true"></i>Buscar</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <form role="form" method="POST" action="{%url 'documentos_postulante' postulante.correoelectronicopersonal %}"  enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% if respuesta %}                                       
+                                        {%  for res in respuesta %}
+                                            <!-- ver cdp= 7081 // { {res.NumeroDeCaso}} -->
+                                            <div class="card-body">
+                                            <div class="form-row">
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Numero CDP</label><input type=' text'  name='NumeroCDP'  id='NumeroCDP'  class=' form-control'  value='{{ res.CDPs.0.Numero }}' readonly required ></div></div>
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia</label><input type=' text'  name='Vigencia'  id='Vigencia'  class=' form-control'  value='{{ res.Vigencia }}' readonly ></div></div>
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Valor CDP</label><input type=' text'  name='ValorCDP'  id='ValorCDP'  class=' form-control'  value='{{ res.CDPs.0.Valor }}' readonly required ></div></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Valor del Contrato</strong></label><input type=' text'  name='valor_contrato'  id='valor_contrato'  class=' form-control'  value=''  required ></div></div>
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Valor de Afectacion a CDP</strong></label><input type=' text'  name='valor_afectacion'  id='valor_afectacion'  class=' form-control'  value=''  required ></div></div>
+                                                <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Honorarios Mensuales</strong></label><input type=' text'  name='honorarios'  id='honorarios'  class=' form-control'  value=''  required ></div></div>
+                                            </div>
+
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary" name="enviar" value="guardar_cdp" >Guardar CDP</button>
+                                                <a class="btn btn-default float-right" data-toggle="collapse" href="#collapseMoreCDP" role="button" aria-expanded="false" aria-controls="collapseMoreCDP">Ver mas información del CDP</a>
+                                            </div>
+                                            <p>
+                                            </p>
+                                            <div class="collapse" id="collapseMoreCDP">
+                                                <div class="form-row">
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Id del cupo</label><input type=' text'  name='IdCupo'  id='IdCupo'  class=' form-control'  value='{{ res.IdCupo }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del cupo</label><input type=' text'  name='DescripcionCupo'  id='DescripcionCupo'  class=' form-control'  value='{{ res.DescripcionCupo }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia PAA</label><input type=' text'  name='VigenciaPAA'  id='VigenciaPAA'  class=' form-control'  value='{{vigencia_plan}}' readonly required ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia CDP</label><input type=' text'  name='VigenciaCDP'  id='VigenciaCDP'  class=' form-control'  value='{{vigencia_cdp}}' readonly required ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código proyecto</label><input type=' text'  name='CodProyecto'  id='CodProyecto'  class=' form-control'  value='{{ res.CodProyecto }}' readonly required ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripcion del objeto</label><textarea  name='ObjetoDelContrato'  id='ObjetoDelContrato'  class=' form-control'  required >{{ res.DescripcionObjeto }}</textarea></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nompre del proyecto</label><input type=' text'  name='NompreProyecto'  id='NompreProyecto'  class=' form-control'  value='{{ res.NompreProyecto }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código del componente de gasto</label><input type=' text'  name='CodComponenteGasto'  id='CodComponenteGasto'  class=' form-control'  value='{{ res.CodComponenteGasto }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Componente del gasto</label><input type=' text'  name='ComponenteGasto'  id='ComponenteGasto'  class=' form-control'  value='{{ res.ComponenteGasto }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Dependencia</label><input type=' text'  name='Dependencia'  id='Dependencia'  class=' form-control'  value='{{ res.Dependencia }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del centro de costo</label><input type=' text'  name='DescripcionCentroDeCosto'  id='DescripcionCentroDeCosto'  class=' form-control'  value='{{ res.DescripcionCentroDeCosto }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del objeto</label><input type=' text'  name='DescripcionObjeto'  id='DescripcionObjeto'  class=' form-control'  value='{{ res.DescripcionObjeto }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Estado del cupo</label><input type=' text'  name='EstadoCupo'  id='EstadoCupo'  class=' form-control'  value='{{ res.EstadoCupo }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Fuente del financiación</label><input type=' text'  name='FuenteFinanciacion'  id='FuenteFinanciacion'  class=' form-control'  value='{{ res.FuenteFinanciacion }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Localidad</label><input type=' text'  name='Localidad'  id='Localidad'  class=' form-control'  value='{{ res.Localidad }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de actividad</label><input type=' text'  name='NombreActividad'  id='NombreActividad'  class=' form-control'  value='{{ res.NombreActividad }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de dependencia</label><input type=' text'  name='NombreDependencia'  id='NombreDependencia'  class=' form-control'  value='{{ res.NombreDependencia }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de meta</label><input type=' text'  name='NombreMeta'  id='NombreMeta'  class=' form-control'  value='{{ res.NombreMeta }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre modalidad Adquisición</label><input type=' text'  name='NombreModalidadAdquisicion'  id='NombreModalidadAdquisicion'  class=' form-control'  value='{{ res.NombreModalidadAdquisicion }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre modalidad selección</label><input type=' text'  name='NombreModalidadSeleccion'  id='NombreModalidadSeleccion'  class=' form-control'  value='{{ res.NombreModalidadSeleccion }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre PMR</label><input type=' text'  name='NombrePMR'  id='NombrePMR'  class=' form-control'  value='{{ res.NombrePMR }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del plan</label><input type=' text'  name='NombrePlan'  id='NombrePlan'  class=' form-control'  value='{{ res.NombrePlan }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre rubro presupuestal</label><input type=' text'  name='NombreRubroPrespupuestal'  id='NombreRubroPrespupuestal'  class=' form-control'  value='{{ res.NombreRubroPrespupuestal }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del servicio</label><input type=' text'  name='NombreServicio'  id='NombreServicio'  class=' form-control'  value='{{ res.NombreServicio }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del tipo de contratación</label><input type=' text'  name='NombreTipoDeContratacion'  id='NombreTipoDeContratacion'  class=' form-control'  value='{{ res.NombreTipoDeContratacion }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tipo</label><input type=' text'  name='Tipo'  id='Tipo'  class=' form-control'  value='{{ res.Tipo }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tipo de contratación</label><input type=' text'  name='TipoDeContratacion'  id='TipoDeContratacion'  class=' form-control'  value='{{ res.TipoDeContratacion }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>UNSPSC</label><input type=' text'  name='UNSPSC'  id='UNSPSC'  class=' form-control'  value='{{ res.UNSPSC }}' readonly ></div></div>
+                                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Unidad operativa</label><input type=' text'  name='UnidadOperativa'  id='UnidadOperativa'  class=' form-control'  value='{{ res.UnidadOperativa }}' readonly ></div></div>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- /.form-row -->
+                                        {%  endfor %}
+
+                                    </div>
+                                        <!-- /.card-body -->
+                                    {%endif%}
+                                </form>
+                                
+                             
+
+
+                                </p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-row">
+                                    {% if not cdps %}
+                                    <div class="col-md-4">
+                                    
+                                        <button type="button" disabled  class="btn btn-primary"
+                                            ><i class="fa fa-user-check" aria-hidden="true"></i>Documentos del Proceso</a>
+                                    </div>
+                                    {%else%}
+                                    <div class="col-md-4">
+                                    
+                                        <a href="{% url 'documentos_proceso' cdps.0.id %}"  class="btn btn-primary"
+                                            ><i class="fa fa-user-check" aria-hidden="true"></i>Documentos del Proceso</a>
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-md-4">
+                                        <input type="hidden" name="id_radicacion_postulante" value="{{postulante.id}}">
+                                        <input type="hidden" name="correo" value="{{postulante.correoelectronicopersonal}}">
+                                        <button type="submit" class="btn btn-primary" name="enviar" {% if not cdps %}disabled{% endif %}
+                                                value="crear_proceso"><i class="fa fa-user-check" aria-hidden="true"></i>Crear Proceso</button>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <a href="{% url 'lista_postulantes' %}" type="button" class="btn btn-primary">Regresar</a>
+                                    </div>
+ 
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

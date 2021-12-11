@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_proyecto_list' %}">
+    proyecto Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
+    <tr><td>numero</td><td>{{ object.numero }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

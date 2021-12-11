@@ -1,0 +1,68 @@
+{% extends 'layouts/base2.html' %}
+{% load static %}
+
+{% block title %} Registro de Postulante {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <style type="text/css">
+        table {
+            width: 100%
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Creacion de Proceso</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Modulo de Creacion</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Creacion de Proceso</a></li>
+                </ul>
+                <br>
+                <h3 class="card-title">Creacion de Proceso</h3>
+            </div>
+            <div class="col-md-6">
+                <div class="card yearly-sales">
+                <div class="card-block">
+                    <H6>{{ postulante.primer_nombre }} {{ postulante.segundo_nombre }}
+                        {{ postulante.primer_apellido }} {{ postulante.segundo_apellido }} </H6>
+                    <p>
+                        <span class="name">Documento: {{ postulante.numero_documento }}</span>  <br/>
+                                        <span class="subtext">Código: {{ postulante.idpersonasideap }}</span>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- general form elements disabled -->
+        <div class="card card-primary shadow col-12">
+            <div class="card-body">
+                <H2>Proceso creado Satisfactoriamente</H2>
+                    <div class="form-row">
+                       <div class='col-md-12 col-lg-10'>
+                            <div class="form-group">
+                     <H5>Numero de proceso:</H5> {{ proceso.numero_de_proceso }}<p></p>
+                                <H5>Nombre del Contratista:</H5> {{ proceso.nombre_contratista }}<p></p>
+                                    <H5>Cedula del contratista:</H5> {{ proceso.cedula_contratista  }}<p></p>
+                                    <H5>Numero del cdp:</H5> {{ proceso.numero_cdp }}<p></p>
+                                    <H5>Valor del cdp:</H5> {{ proceso.valor_cdp }}<p></p>
+                                    <H5>Valor del contrato:</H5> {{ proceso.valor_contrato }}<p></p>
+                                    <H5>Proyecto:</H5> {{ proceso.proyecto }}<p></p>
+                                    <H5>Objeto:</H5> {{ proceso.objeto }}<p></p>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

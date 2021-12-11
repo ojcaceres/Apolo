@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-12"><h3>
+        Informacion del cupo/CDP
+    </h3></div>
+</div>    
+<input type="hidden" name="id_radicacion_cdp" value = '{{ cdp.id }}'>
+<div class="form-row">
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Numero Proceso</label><input type=' text'  name='NumeroprocesoApolo'  id='NumeroCDP'  class=' form-control'  value='{{ cdp.id }}' readonly required ></div></div>
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Numero CDP</label><input type=' text'  name='NumeroCDP'  id='NumeroCDP'  class=' form-control'  value='{{ cdp.numero_cdp }}' readonly required ></div></div>
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia CDP</label><input type=' text'  name='VigenciaCDP'  id='VigenciaCDP'  class=' form-control'  value='{{cdp.vigencia_cdp}}' readonly required ></div></div>
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del postulante</label><input type=' text'  name='nombre_postulante'  id='nombre_postulante'  class=' form-control'  value='{{cdp.display_postulante}}' readonly  required ></div></div>
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Valor del contrato</label><input type=' text'  name='valor_contrato'  id='valor_contrato'  class=' form-control'  value='{{ cdp.valor_contrato }}' readonly  required ></div></div>
+    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Honorarios Mensuales</label><input type=' text'  name='honorarios'  id='honorarios'  class=' form-control'  value='{{ cdp.honorarios }}' readonly required ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia PAA</label><input type=' text'  name='VigenciaPAA'  id='VigenciaPAA'  class=' form-control'  value='{{cdp.vigencia_plan}}' readonly required ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Valor CDP</label><input type=' text'  name='ValorCDP'  id='ValorCDP'  class=' form-control'  value='{{ cdp.valor_cdp }}' readonly required ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código proyecto</label><input type=' text'  name='CodProyecto'  id='CodProyecto'  class=' form-control'  value='{{ cdp.codigo_proyecto }}' readonly required ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Id del cupo</label><input type=' text'  name='IdCupo'  id='IdCupo'  class=' form-control'  value='{{ cdp.id_cupo_paa }}' readonly ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del cupo</label><input type=' text'  name='DescripcionCupo'  id='DescripcionCupo'  class=' form-control'  value='{{ cdp.descripcion_cupo }}' readonly ></div></div>
+        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nompre del proyecto</label><input type=' text'  name='NompreProyecto'  id='NompreProyecto'  class=' form-control'  value='{{ cdp.nombre_proyecto }}' readonly ></div></div>
+        <div class=' col-md-12 col-lg-12' ><div class=' form-group' ><label>Descripcion del objeto</label><textarea  name='ObjetoDelContrato'  id='ObjetoDelContrato'  class=' form-control' rows='5' required readonly >{{ cdp.descripcion_objeto }}</textarea></div></div>
+</div>

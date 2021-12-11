@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+    <style>
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+            color: red
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+
+    <script>
+        function confirmSubmit() {
+            var agree = confirm("Esta seguro?\nEsto terminara definitivamente el proceso");
+            if (agree)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
+
+
+    <div style="margin-left: 20px">
+        <p>
+            <a class="btn btn-light" href="javascript:history.back()">
+                ← Listar Procesos
+            </a>
+        </p>
+        {% include "includes/devueltos.html" %}
+        {% include "includes/linksecop.html" %}
+
+
+        <a href="" type="button" data-toggle="collapse"
+           data-target="#collapseExample" >
+            Historial
+        </a>
+        <div class="collapse" id="collapseExample">
+            {% include "includes/historial.html" %}
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="col">
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p><label for="novedad">Novedad:</label><br>
+                        <input type="text" id="novedad" name="novedad" value="{{ novedad_previa }}"
+                               class="form-control col-sm-10"
+                               autocomplete="false"> <br>
+                    </p>
+
+                    {% include "includes/cdps.html" %}
+
+                    <button class="btn btn-primary shadow-2 mb-4" name="action" value="Next" type="submit">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Avanzar a {{ next_state }}
+                    </button>
+
+
+                    {% if back_state != None %}
+                        <button class="btn mb-4 " name="none" value="none" disabled type="button"</button>
+                        <button class="btn btn-secondary shadow-2 mb-4" name="action" value="Back" type="submit">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Devolver a {{ back_state }}
+                        </button>
+
+                    {% endif %}
+
+                    {% if action_state != None %}
+
+                        {% if action_state == "Save" %}
+
+                            <button class="btn mb-4 " name="none" value="none" disabled type="button"</button>
+                            <button class="btn btn-outline-dark shadow-2 mb-4" name="action" value="Save" type="submit">
+                                <i class="fa fa-save" aria-hidden="true"></i>
+                                Guardar
+                            </button>
+
+                        {% else %}
+
+                            <button class="btn mb-4 " name="none" value="none" disabled type="button"</button>
+                            <button class="btn btn-outline-dark shadow-2 mb-4" name="action" value="Action"
+                                    onClick='return confirmSubmit()' type="submit">
+                                <i class="fa fa-window-close" aria-hidden="true"></i>
+                                Enviar a {{ action_state }}
+                            </button>
+                        {% endif %}
+                    {% endif %}
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

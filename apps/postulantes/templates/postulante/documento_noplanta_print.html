@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de no planta</title>
+    <style type="text/css">
+        .border_sombreado{            
+            border: 1px solid #000000;
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <table style="border: 1px; border-collapse: collapse;">
+        <tr>
+            <td>&nbsp;</br>&nbsp;</br>&nbsp;</br></td>
+        </tr>        
+        <tr>
+            <td class="border_sombreado"  ><strong>DE:</strong></td>
+        </tr>        
+        <tr>
+            <td>
+                Nombre: {{radicacion_cdp_documentos.nombre_remitente}}
+                <br>
+                cargo:{{radicacion_cdp_documentos.cargo_remitente}}
+            </td>
+        </tr>        
+        <tr>
+            <td class="border_sombreado"><strong>PARA:</strong></td>
+        </tr>        
+        <tr>
+            <td >
+                Nombre: {{radicacion_cdp_documentos.nombre_destinatario}}
+                <br>
+                cargo:{{radicacion_cdp_documentos.cargo_destinatario}}
+            </td>
+        </tr>        
+        <tr>
+            <td class="border_sombreado">OBJETO:</td>
+        </tr>
+        <tr>
+            <td>
+                {{radicacion_cdp_documentos.objeto}}
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+               <br>&nbsp;
+               
+               Documento firmado eletrónicamente de acuerdo con la Ley<br>
+               527 de 1999 y el Decreto 2364 de 2012<br>
+               _________________________________________________________<br>
+               Firma del(a) Solicitante<br>
+               <br>
+               
+            </td>
+        </tr>        
+        <tr>
+            <td style="text-align: center;" class="border_sombreado">CERTIFICACIÓN:</td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                Que el(la) suscrito(a) SUBDIRECTOR(A) DE GESTION Y DESARROLLO DEL TALENTO HUMANO DE LA
+                SDIS, CONSIDERANDO que si bien la Secretaría Distrital de Integración Social cuenta con una Planta de
+                Personal Global, el personal vinculado a la planta y los perfiles existentes no son suficientes para suplir las
+                necesidades actuales de servicio de todos los Proyectos de la SDIS y sus coberturas, además el actual
+                Manual Específico de Funciones y Competencias Laborales no contempla en todos los perfiles Asesores
+                Profesionales Técnicos y Asistenciales el requisito de conocimientos especializados y específicos
+                demandados en los diferentes Proyectos para el cumplimiento de los objetivos y ls Misión Institucional. En
+                <br><br>
+                EL personal vinculado a la planta NO es suficiente ó NO existe personal  [X]
+                <br><br>
+                para desarrollar el objeto contractual descrito anteriormente
+            </td>
+        </tr>
+        <tr>
+            <td><br>El presente certificado se expide el  {{radicacion_cdp_documentos.fecha_expedicion}}</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+                _________________________________________________________________<br>
+                {{radicacion_cdp_documentos.nombre_destinatario}}<br>
+                SUBDIRECTORA DE GESTION Y DESARROLLO DEL TALENTO HYMANO<br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               
+            </td>
+        </tr>
+    </table>
+    
+    
+</body>
+</html>

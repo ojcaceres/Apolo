@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+    <style>
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+            color: red
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div style="margin-left: 20px">
+        <p>
+            <a class="btn btn-light" href="{{ request.META.HTTP_REFERER }}">
+                ← Listar Procesos
+            </a>
+        </p>
+
+              {% if proceso.devuelto == True %}
+              <div class="bg-primary col-sm-10"><h6 class="text-white mb-2">PROCESO DEVUELTO
+                  DESDE {{ proceso.estado_devolucion }}</h6></div>
+              </p>
+          {% endif %}
+        {% if proceso.link != None %}
+            <p class="col-sm-10" style="text-align:right;">
+            <a href="{{ proceso.link }}" target="_blank"> ver en Secop </a>
+        {% endif %}
+
+        <div class="row">
+            <div class="col">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p> <label>Novedad:</label><br>
+                        <input type="text" readonly value="{{novedad_previa}}" class="form-control col-sm-10" autocomplete="false"> <br>
+                    </p>   
+
+                    {{ form.as_p }}
+
+                    <div class="card">
+                    <p> <label for="novedad">Novedad:</label><br>
+                            <input type="text" id="novedad" name="novedad" class="form-control col-sm-10"
+                                autocomplete="false" required> <br>
+                        </p>
+                    <button class="btn btn-primary shadow-2 mb-4" name="action" value="Next" type="submit">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Avanzar a {{ next_state }}
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

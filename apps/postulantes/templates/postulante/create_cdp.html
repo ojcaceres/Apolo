@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+    <style>
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+            color: red
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+            
+            <div class="row">
+                <div class="col-12">
+                    <!-- general form elements disabled -->
+        
+                    <div class="card card-primary shadow col-12">
+                        <div class="card-header">
+                            <h3 class="card-title">Crear proceso a partir de CDP registrado en el PAA</h3>
+                        </div>
+                        <!-- /.card-header -->
+                         <div class="card-body"></div>
+                            {% if mensaje_respuesta %}
+                            <div class="alert alert-success alert-block shadow">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ mensaje_respuesta }}</strong>
+                            </div>
+                            {% endif %}
+                            <form role="form" method="POST"  action="{% url 'nuevo_cdp' %}">
+                            {% csrf_token %}                                                           
+                                <div class="form-row">
+                                    <div class='col-4' >    
+                                        <div class="form-group">
+                                            <label>Vigencia PAA</label>
+                                            <input type="text" name="vigencia_plan" id="vigencia_plan"  class="form-control" placeholder="" value=""  required>
+                                        </div>
+                                    </div>
+                                    <div class='col-4' >    
+                                        <div class="form-group">
+                                            <label>Número de CDP *</label>
+                                            <input type="text" name="numero_cdp" id="numero_cdp"  class="form-control" placeholder="" value=""  required>
+                                        </div>
+                                    </div>
+                                    <div class='col-4' >    
+                                        <div class="form-group">
+                                            <label>Vigencia del CDP</label>
+                                            <input type="text" name="vigencia_cdp" id="vigencia_cdp"  class="form-control" placeholder="" value=""  required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary" name="buscar" value="buscar" >Buscar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </form>
+                            <form role="form" method="POST"  action="{% url 'nuevo_cdp' %}">
+                            {% if respuesta %}
+                            {% csrf_token %}
+                            {%  for res in respuesta %} 
+                            <!-- ver cdp= 7081 // { {res.NumeroDeCaso}} -->
+                            <div class="card-body">
+                                <div class="form-row">
+                                   <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Valor del Contrato</strong></label><input type=' text'  name='valor_contrato'  id='valor_contrato'  class=' form-control'  value=''  required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Valor de Afectacion a CDP</strong></label><input type=' text'  name='valor_afectacion'  id='valor_afectacion'  class=' form-control'  value=''  required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label><strong>Honorarios Mensuales</strong></label><input type=' text'  name='honorarios'  id='honorarios'  class=' form-control'  value=''  required ></div></div>
+                                </div>
+                                    <div class="form-row">
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Id del cupo</label><input type=' text'  name='IdCupo'  id='IdCupo'  class=' form-control'  value='{{ res.IdCupo }}' readonly ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del cupo</label><input type=' text'  name='DescripcionCupo'  id='DescripcionCupo'  class=' form-control'  value='{{ res.DescripcionCupo }}' readonly ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Numero CDP</label><input type=' text'  name='NumeroCDP'  id='NumeroCDP'  class=' form-control'  value='{{ res.CDPs.0.Numero }}' readonly required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia CDP</label><input type=' text'  name='VigenciaCDP'  id='VigenciaCDP'  class=' form-control'  value='{{vigencia_cdp}}' readonly required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia PAA</label><input type=' text'  name='VigenciaPAA'  id='VigenciaPAA'  class=' form-control'  value='{{vigencia_plan}}' readonly required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Vigencia</label><input type=' text'  name='Vigencia'  id='Vigencia'  class=' form-control'  value='{{ res.Vigencia }}' readonly ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Valor CDP</label><input type=' text'  name='ValorCDP'  id='ValorCDP'  class=' form-control'  value='{{ res.CDPs.0.Valor }}' readonly required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código proyecto</label><input type=' text'  name='CodProyecto'  id='CodProyecto'  class=' form-control'  value='{{ res.CodProyecto }}' readonly required ></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripcion del objeto</label><textarea  name='ObjetoDelContrato'  id='ObjetoDelContrato'  class=' form-control'  required >{{ res.DescripcionObjeto }}</textarea></div></div>
+                                    <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nompre del proyecto</label><input type=' text'  name='NompreProyecto'  id='NompreProyecto'  class=' form-control'  value='{{ res.NompreProyecto }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Código del componente de gasto</label><input type=' text'  name='CodComponenteGasto'  id='CodComponenteGasto'  class=' form-control'  value='{{ res.CodComponenteGasto }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Componente del gasto</label><input type=' text'  name='ComponenteGasto'  id='ComponenteGasto'  class=' form-control'  value='{{ res.ComponenteGasto }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Dependencia</label><input type=' text'  name='Dependencia'  id='Dependencia'  class=' form-control'  value='{{ res.Dependencia }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del centro de costo</label><input type=' text'  name='DescripcionCentroDeCosto'  id='DescripcionCentroDeCosto'  class=' form-control'  value='{{ res.DescripcionCentroDeCosto }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Descripción del objeto</label><input type=' text'  name='DescripcionObjeto'  id='DescripcionObjeto'  class=' form-control'  value='{{ res.DescripcionObjeto }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Estado del cupo</label><input type=' text'  name='EstadoCupo'  id='EstadoCupo'  class=' form-control'  value='{{ res.EstadoCupo }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Fuente del financiación</label><input type=' text'  name='FuenteFinanciacion'  id='FuenteFinanciacion'  class=' form-control'  value='{{ res.FuenteFinanciacion }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Localidad</label><input type=' text'  name='Localidad'  id='Localidad'  class=' form-control'  value='{{ res.Localidad }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de actividad</label><input type=' text'  name='NombreActividad'  id='NombreActividad'  class=' form-control'  value='{{ res.NombreActividad }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de dependencia</label><input type=' text'  name='NombreDependencia'  id='NombreDependencia'  class=' form-control'  value='{{ res.NombreDependencia }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre de meta</label><input type=' text'  name='NombreMeta'  id='NombreMeta'  class=' form-control'  value='{{ res.NombreMeta }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre modalidad Adquisición</label><input type=' text'  name='NombreModalidadAdquisicion'  id='NombreModalidadAdquisicion'  class=' form-control'  value='{{ res.NombreModalidadAdquisicion }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre modalidad selección</label><input type=' text'  name='NombreModalidadSeleccion'  id='NombreModalidadSeleccion'  class=' form-control'  value='{{ res.NombreModalidadSeleccion }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre PMR</label><input type=' text'  name='NombrePMR'  id='NombrePMR'  class=' form-control'  value='{{ res.NombrePMR }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del plan</label><input type=' text'  name='NombrePlan'  id='NombrePlan'  class=' form-control'  value='{{ res.NombrePlan }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre rubro presupuestal</label><input type=' text'  name='NombreRubroPrespupuestal'  id='NombreRubroPrespupuestal'  class=' form-control'  value='{{ res.NombreRubroPrespupuestal }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del servicio</label><input type=' text'  name='NombreServicio'  id='NombreServicio'  class=' form-control'  value='{{ res.NombreServicio }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Nombre del tipo de contratación</label><input type=' text'  name='NombreTipoDeContratacion'  id='NombreTipoDeContratacion'  class=' form-control'  value='{{ res.NombreTipoDeContratacion }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tipo</label><input type=' text'  name='Tipo'  id='Tipo'  class=' form-control'  value='{{ res.Tipo }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Tipo de contratación</label><input type=' text'  name='TipoDeContratacion'  id='TipoDeContratacion'  class=' form-control'  value='{{ res.TipoDeContratacion }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>UNSPSC</label><input type=' text'  name='UNSPSC'  id='UNSPSC'  class=' form-control'  value='{{ res.UNSPSC }}' readonly ></div></div>
+                                        <div class=' col-md-4 col-lg-4' ><div class=' form-group' ><label>Unidad operativa</label><input type=' text'  name='UnidadOperativa'  id='UnidadOperativa'  class=' form-control'  value='{{ res.UnidadOperativa }}' readonly ></div></div>
+                                    </div>
+                                    <!-- /.form-row -->
+                                    {%  endfor %} 
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" name="guardar" vuale="guardar" >Guardar</button>
+                                    <a href=""  type="button" class="btn btn-default float-right"  name="regresar" vuale="regresar"  >Regresar</a>
+                                </div>
+                                {%endif%}
+                            </form>
+                        </div>
+                    </div>
+                      <!-- /.card -->
+        
+        
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            {% endblock %}

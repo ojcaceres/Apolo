@@ -1,0 +1,170 @@
+{% load permission_tags %}
+
+<nav class="pcoded-navbar" xmlns="http://www.w3.org/1999/html">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a target="_blank" class="b-brand">
+                <div class="b-bg">
+                    <img src="/static/jazzmin/img/logo.png" width="40" class="rounded-circle"> </img>
+                </div>
+                <span class="b-title">Apolo V2.0.5</span>
+            </a>
+            
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item pcoded-menu-caption"><label>Seguimiento</label></li>
+
+
+              {% if user.is_superuser or "REVISARMOD" in modulos or "CREACION_RH" in modulos %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-mail"></i></span><span class="pcoded-mtext"> Creacion</span></a>
+                    <ul class="pcoded-submenu">
+
+                        {% if user.is_superuser or  "CREACION_RH" in modulos %}
+                            <li class=""><a href="{% url 'lista_postulantes' %}" class="">Postulantes</a></li>
+                        {% endif %}
+
+                        {% if user.is_superuser or "REVISARMOD" in modulos %}
+                            <li class=""><a href="/contratacion/modificaciones/creacion" class="">Crear Modificacion</a></li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% endif %}
+        
+
+                {% if user.is_superuser or "REVISION" in modulos or "DEVUELTO_RADICADO" in modulos  or "REVISIONMOD" in modulos %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-mail"></i></span><span class="pcoded-mtext"> Radicacion</span></a>
+                    <ul class="pcoded-submenu">
+
+                        {% if user.is_superuser or "REVISION" in modulos %}
+                            <li class=""><a href="/contratacion/radicacion/revision/" class="">Listar Procesos en
+                                revision</a></li>
+                        {% endif %}
+
+                        {% if user.is_superuser or "REVISIONMOD" in modulos %}
+                            <li class=""><a href="/contratacion/modificaciones/revision/" class="">Listar Modificaciones en
+                                revision</a></li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% endif %}
+
+
+                {% if  user.is_superuser or "REVISAR"  in modulos or "SUBSANACION" in modulos  or "PRIMER_FLUJO" in modulos  %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-layers"></i></span><span class="pcoded-mtext">Alistamiento</span></a>
+                    <ul class="pcoded-submenu">
+                        {% if  user.is_superuser or "REVISAR" in modulos %}
+                            <li class=""><a href="/contratacion/alistamiento/revisar/" class="">Listar por Revisar</a>
+                            </li>
+                        {% endif %}
+
+                        {% if user.is_superuser or "SUBSANACION" in modulos %}
+                            <li class=""><a href="/contratacion/alistamiento/subsanacion/" class="">Listar
+                                Subsanacion</a></li>
+                        {% endif %}
+
+                        {% if user.is_superuser or  "PRIMER_FLUJO" in modulos %}
+                            <li class=""><a href="/contratacion/alistamiento/primer-flujo/" class="">Listar en Primer
+                                Flujo</a></li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if user.is_superuser or  "NUMERACION_CONTRATO" in modulos  or  "SECOP_PUBLICACION" in modulos or  "SECOP_REVISAR" in modulos  or  "SEGUNDO_FLUJO" in modulos  or  "SECOP_FIRMA" in modulos%}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-hash"></i></span><span class="pcoded-mtext">Estructuracion y Desarrollo</span></a>
+                    <ul class="pcoded-submenu">
+                        {% if user.is_superuser or  "NUMERACION_CONTRATO" in modulos %}
+                            <li class=""><a href="/contratacion/numeracion/" class="">Listar Numeracion</a></li>
+                        {% endif %}
+
+                         {% if user.is_superuser or  "SECOP_PUBLICACION" in modulos %}
+                            <li class=""><a href="/contratacion/secop-publicacion/" class="">Listar Secop Publicacion</a></li>
+                        {% endif %}
+
+                        {% if user.is_superuser or  "SECOP_REVISAR" in modulos %}
+                            <li class=""><a href="/contratacion/secop-flujos/revisar/" class="">Listar por Revisar</a>
+                            </li>
+                        {% endif %}
+
+                        {% if user.is_superuser or  "SEGUNDO_FLUJO" in modulos %}
+                            <li class=""><a href="/contratacion/secop-flujos/segundo-flujo/" class="">Listar en Segundo
+                                Flujo</a></li>
+                        {% endif %}
+
+                        {% if user.is_superuser or  "SECOP_FIRMA" in modulos %}
+                            <li class=""><a href="/contratacion/secop-flujos/secop-firma/" class="">Listar en Secop Firma</a></li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% endif %}
+
+
+
+                 {% if user.is_superuser or  "FIRMADO" in modulos  or  "SOLICITUD_CRP" in modulos   or  "CRP_DEVUELTO" in modulos %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-file-text"></i></span><span class="pcoded-mtext">Tramite-crp</span></a>
+                    <ul class="pcoded-submenu">
+                        {% if user.is_superuser or  "SOLICITUD_CRP" in modulos %}
+                            <li class=""><a href="/contratacion/tramite-crp/solicitud-crp/" class="">Listar
+                                Solicitud
+                                CRP</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+
+
+                {% if user.is_superuser or  "TRAMITE_FINANCIERA" in modulos %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-trending-up"></i></span><span class="pcoded-mtext">Financiera</span></a>
+                    <ul class="pcoded-submenu">
+                        {% if user.is_superuser or  "TRAMITE_FINANCIERA" in modulos %}
+                            <li class=""><a href="/contratacion/financiera/tramite/" class="">Listar Financiera</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+
+
+
+                {% if user.is_superuser or  "PERFECCIONAMIENTO" in modulos %}
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-star-on"></i></span><span class="pcoded-mtext">Perfeccionamiento</span></a>
+                    <ul class="pcoded-submenu">
+
+                        {% if user.is_superuser or  "PERFECCIONAMIENTO" in modulos %}
+                            <li class=""><a href="/contratacion/perfeccionamiento/" class="">Listar Perfeccionamiento</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %} 
+
+                <li data-username="Disabled Menu" class="nav-item"> 
+                    <a href={% url 'logout' %} class="nav-link">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-power"></i>
+                            </span>
+                        <span class="pcoded-mtext">Cerrar sesion - [ {{ request.user.username }} ]</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_estado_novedad_list' %}">
+    estado_novedad Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>fecha_estado</td><td>{{ object.fecha_estado }}</td></tr>
+    <tr><td>novedad</td><td>{{ object.novedad }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}
